@@ -3,3 +3,8 @@
   <p>Olá, <%= current_user.first_name %>!</p>
 <% end %>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+<% if user_signed_in? %>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+
+<% end %>
