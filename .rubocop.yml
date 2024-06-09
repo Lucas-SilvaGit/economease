@@ -1,0 +1,63 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'Gemfile'
+    - 'Rakefile'
+
+Metrics/BlockLength:
+  Enabled: true
+  Max: 25
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+
+Metrics/AbcSize:
+  Max: 15
+
+Metrics/MethodLength:
+  Max: 10
+
+Metrics/ClassLength:
+  Max: 100
+
+Metrics/CyclomaticComplexity:
+  Max: 6
+
+Metrics/ParameterLists:
+  Max: 4
+
+Metrics/PerceivedComplexity:
+  Max: 7
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: always
+
+Style/ClassAndModuleChildren:
+  Enabled: true
+
+Style/RedundantArgument:
+  Enabled: true
+
+Style/IfUnlessModifier:
+  Enabled: true
+
+Layout/EmptyLineAfterMagicComment:
+  Enabled: true
