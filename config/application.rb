@@ -46,6 +46,7 @@ module Economease
       g.controller_specs false
       g.system_tests false
       g.view_specs false
+      g.orm :active_record, primary_key_type: :uuid
     end
 
     config.to_prepare do

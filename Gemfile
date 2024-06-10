@@ -51,8 +51,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.1.0'
   gem "devise"
   gem "letter_opener_web"
-  gem 'rubocop-rails'
-  gem 'solargraph-rails'
+  gem "rubocop-rails"
+  gem "solargraph-rails"
+  gem "htmlbeautifier"
 end
 
 group :development do
