@@ -54,6 +54,7 @@ group :development, :test do
   gem "rubocop-rails"
   gem "solargraph-rails"
   gem "htmlbeautifier"
+  gem 'factory_bot_rails'
 end
 
 group :development do
