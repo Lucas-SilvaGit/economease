@@ -19,6 +19,7 @@ require 'rspec/rails'
 # of increasing the boot-up time by auto-requiring all files in the support
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
+# ... outras configurações ...
 #
 Rails.root.glob('spec/support/**/*.rb').sort.each { |f| require f }
 
@@ -31,8 +32,11 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
 # Then add these to the configuration block
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.fixture_paths = ["#{::Rails.root}/spec/fixtures"]
   config.global_fixtures = :all
+
+  config.include FactoryBot::Syntax::Methods
 
   config.include ActiveJob::TestHelper
   # config.include ActionMailbox::TestHelper
