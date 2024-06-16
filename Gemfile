@@ -55,6 +55,7 @@ group :development, :test do
   gem "solargraph-rails"
   gem "htmlbeautifier"
   gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do

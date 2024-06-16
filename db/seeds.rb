@@ -7,3 +7,21 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# create a default user
+User.create!(
+  first_name: 'John',
+  last_name: 'Doe',
+  email: 'admin@admin.com',
+  password: '123456',
+  password_confirmation: '123456'
+)
+
+# Create a new account for the default user
+10.times do |i|
+Account.create!(
+  name: "Default Account #{i}",
+  balance: Faker::Number.decimal(l_digits: 2),
+  user_id: User.first.id
+)
+end
