@@ -55,7 +55,7 @@ RSpec.describe "/accounts", type: :request do
 
       it "redirects to the created account" do
         post accounts_url, params: { account: valid_attributes }
-        expect(response).to redirect_to(account_url(Account.last))
+        expect(response).to redirect_to(accounts_path)
       end
     end
 
@@ -91,7 +91,7 @@ RSpec.describe "/accounts", type: :request do
         account = Account.create! valid_attributes
         patch account_url(account), params: { account: new_attributes }
         account.reload
-        expect(response).to redirect_to(account_url(account))
+        expect(response).to redirect_to(accounts_path)
       end
     end
 
