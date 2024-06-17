@@ -5,9 +5,8 @@ class AccountsController < ApplicationController
   before_action :set_account, only: %i[show edit update destroy]
 
   def index
-    # retornar apenas as contas do usuário logado
-    # @accounts = current_user.accounts
-    @accounts = Account.all
+    @accounts = current_user.accounts
+    # @accounts = Account.all
   end
 
   def show
@@ -24,7 +23,7 @@ class AccountsController < ApplicationController
     @account = current_user.accounts.new(account_params)
 
     if @account.save
-      redirect_to @account, notice: "Account was successfully created."
+      redirect_to accounts_path, notice: "Account was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +31,7 @@ class AccountsController < ApplicationController
 
   def update
     if @account.update(account_params)
-      redirect_to @account, notice: "Account was successfully updated.", status: :see_other
+      redirect_to accounts_path, notice: "Account was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
