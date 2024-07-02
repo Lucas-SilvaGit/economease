@@ -3,5 +3,5 @@
 class Category < ApplicationRecord
   include DefaultUuid
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 end
