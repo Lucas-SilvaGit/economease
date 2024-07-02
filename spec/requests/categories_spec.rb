@@ -54,9 +54,9 @@ RSpec.describe "/categories", type: :request do
         }.to change(Category, :count).by(1)
       end
 
-      it "redirects to the created category" do
+      it "redirects to the categories list" do
         post categories_url, params: { category: valid_attributes }
-        expect(response).to redirect_to(category_url(Category.last))
+        expect(response).to redirect_to(categories_path)
       end
     end
 
@@ -91,7 +91,7 @@ RSpec.describe "/categories", type: :request do
         category = Category.create! valid_attributes
         patch category_url(category), params: { category: new_attributes }
         category.reload
-        expect(response).to redirect_to(category_url(category))
+        expect(response).to redirect_to(categories_path)
       end
     end
 

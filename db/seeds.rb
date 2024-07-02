@@ -25,3 +25,25 @@ Account.create!(
   user_id: User.first.id
 )
 end
+
+# Categorias para um sistema de controle financeiro pessoal
+categories = [
+  'Alimentação',
+  'Transporte',
+  'Moradia',
+  'Educação',
+  'Saúde',
+  'Lazer',
+  'Investimentos',
+  'Roupas',
+  'Tecnologia',
+  'Serviços Públicos',
+  'Outros'
+]
+
+# Itera sobre as categorias e as cria no banco de dados, se ainda não existirem
+categories.each do |name|
+  Category.find_or_create_by(name: name)
+end
+
+puts "Categorias criadas com sucesso!"
