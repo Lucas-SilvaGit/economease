@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_30_025941) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_06_024517) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -30,6 +30,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_30_025941) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "transactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.float "amount"
+    t.string "transaction_type"
+    t.string "description"
+    t.string "status"
+    t.datetime "date"
+    t.uuid "account_id", null: false
+    t.uuid "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_transactions_on_account_id"
+    t.index ["category_id"], name: "index_transactions_on_category_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
@@ -45,4 +59,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_30_025941) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "transactions", "accounts"
+  add_foreign_key "transactions", "categories"
 end
