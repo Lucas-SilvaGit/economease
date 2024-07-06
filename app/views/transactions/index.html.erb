@@ -1,0 +1,39 @@
+<% content_for(:page_title, "Transactions") %>
+<div class="flex justify-end mb-4">
+  <%= link_to "New transaction", new_transaction_path, class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+</div>
+<div class="overflow-x-auto relative shadow-lg sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+      <tr>
+        <th scope="col" class="py-3 px-6 text-center">Description</th>
+        <th scope="col" class="py-3 px-6 text-center">Amount</th>
+        <th scope="col" class="py-3 px-6 text-center">Transaction Type</th>
+        <th scope="col" class="py-3 px-6 text-center">Date</th>
+        <th scope="col" class="py-3 px-6 text-center">Account</th>
+        <th scope="col" class="py-3 px-6 text-center">Category</th>
+        <th scope="col" class="py-3 px-6 text-center">Status</th>
+        <th scope="col" class="py-3 px-6 text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white">
+      <% @transactions.each_with_index do |transaction, index| %>
+        <tr class="<%= index.odd? ? 'bg-gray-50' : 'bg-white' %> hover:bg-gray-100">
+          <td class="py-3 px-6 text-center align-middle"><%= transaction.description %></td>
+          <td class="py-3 px-6 text-center align-middle"><%= transaction.amount %></td>
+          <td class="py-3 px-6 text-center align-middle"><%= transaction.transaction_type %></td>
+          <td class="py-3 px-6 text-center align-middle"><%= transaction.date.strftime('%d/%m/%Y') %></td>
+          <td class="py-3 px-6 text-center align-middle"><%= transaction.account.name %></td>
+          <td class="py-3 px-6 text-center align-middle"><%= transaction.category.name %></td>
+          <td class="py-3 px-6 text-center align-middle"><%= transaction.status %></td>
+          <td class="py-4 px-6 text-center align-middle">
+            <div class="flex justify-center space-x-4">
+              <%= link_to "Edit", edit_transaction_path(transaction), class: "text-blue-600 hover:text-blue-700" %>
+              <%= button_to "Delete", transaction_path(transaction), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-600 hover:text-red-700" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
