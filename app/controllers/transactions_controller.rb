@@ -22,6 +22,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
 
     if @transaction.save
+      @transaction.account.calculate_balance(@transaction)
       redirect_to transactions_path, notice: "Transaction was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -48,7 +49,9 @@ class TransactionsController < ApplicationController
   end
 
   def transaction_params
-    params.require(:transaction).permit(:amount, :transaction_type, :description, :date, :status, :account_id,
-                                        :category_id)
+    params.require(:transaction).permit(
+      :amount, :transaction_type, :description,
+      :date, :status, :account_id, :category_id
+    )
   end
 end
