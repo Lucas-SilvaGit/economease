@@ -31,6 +31,7 @@ class TransactionsController < ApplicationController
 
   def update
     if @transaction.update(transaction_params)
+      @transaction.account.calculate_balance(@transaction)
       redirect_to transactions_path, notice: "Transaction was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
@@ -38,6 +39,7 @@ class TransactionsController < ApplicationController
   end
 
   def destroy
+    @transaction.account.calculaate_balance_transaction_deletion(@transaction)
     @transaction.destroy!
     redirect_to transactions_url, notice: "Transaction was successfully destroyed.", status: :see_other
   end
