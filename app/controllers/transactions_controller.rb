@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_transaction, only: %i[show edit update destroy]
 
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.joins(:account).where(accounts: { user_id: current_user.id })
   end
 
   def show
@@ -21,64 +19,39 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
 
-    ActiveRecord::Base.transaction do
-      begin
-        if sufficient_balance?
-          @transaction.save!
-          CalculatedBalance.new(@transaction.account).call
-          redirect_to transactions_path, notice: "Transaction was successfully created."
-        else
-          redirect_to transactions_path, alert: "Saldo insuficiente"
-          raise ActiveRecord::Rollback
-        end
-      rescue ActiveRecord::RecordInvalid => e
-        flash[:alert] = e.message
-        render :new, status: :unprocessable_entity
-        raise ActiveRecord::Rollback
-      end
+    unless valid_account?(@transaction.account)
+      flash.now[:alert] = "Invalid account"
+      return render :new, status: :unprocessable_entity
+    end
+
+    processor = TransactionProcessor.new(@transaction)
+
+    if processor.create
+      redirect_to transactions_path, notice: "Transaction created successfully"
+    else
+      flash.now[:alert] = "Insufficient balance"
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    ActiveRecord::Base.transaction do
-      begin
-        if sufficient_balance?
-          @transaction.update!(transaction_params)
-          CalculatedBalance.new(@transaction.account).call
-          redirect_to transactions_path, notice: "Transaction was successfully updated.", status: :see_other
-        else
-          redirect_to transctions_path, alert: "Saldo insuficiente"
-          raise ActiveRecord::Rollback
-        end
-      rescue ActiveRecord::RecordInvalid => e
-        flash[:alert] = e.message
-        render :edit, status: :unprocessable_entity
-        raise ActiveRecord::Rollback
-      end
+    processor = TransactionProcessor.new(@transaction)
+
+    if processor.update(transaction_params)
+      redirect_to transactions_path, notice: "Transaction updated successfully"
+    else
+      flash.now[:alert] = "Insufficient balance"
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    ActiveRecord::Base.transaction do
-      begin
-        @transaction.destroy!
-        CalculatedBalance.new(@transaction.account).call
-        redirect_to transactions_url, notice: "Transaction was successfully destroyed.", status: :see_other
-      rescue ActiveRecord::RecordInvalid => e
-        flash[:alert] = e.message
-        redirect_to transactions_url, alert: "Could not destroy the transaction."
-        raise ActiveRecord::Rollback
-      end
-    end
+    processor = TransactionProcessor.new(@transaction)
+    processor.destroy
+    redirect_to transactions_url, notice: "Transaction deleted successfully"
   end
 
   private
-
-  def sufficient_balance?
-    return true if @transaction.transaction_type == "income"
-    return true if @transaction.transaction_type == "expense" && @transaction.status != "completed"
-    @transaction.account.balance >= @transaction.amount
-  end
 
   def set_transaction
     @transaction = Transaction.find(params[:id])
@@ -89,5 +62,9 @@ class TransactionsController < ApplicationController
       :amount, :transaction_type, :description,
       :date, :status, :account_id, :category_id
     )
+  end
+
+  def valid_account?(account)
+    account && account.user_id == current_user.id
   end
 end
