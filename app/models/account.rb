@@ -11,32 +11,8 @@ class Account < ApplicationRecord
 
   before_validation :set_default_balance
 
-  def calculate_balance(transaction)
-    current_balance = balance || 0
-
-    new_balance = if transaction.transaction_type == "income" && transaction.status == "completed"
-                    current_balance + transaction.amount
-                  elsif transaction.transaction_type == "expense" && transaction.status == "completed"
-                    current_balance - transaction.amount
-                  else
-                    current_balance
-                  end
-
-    update(balance: new_balance)
-  end
-
-  def calculaate_balance_transaction_deletion(transaction)
-    current_balance = balance || 0
-
-    new_balance = if transaction.transaction_type == "income" && transaction.status == "completed"
-                    current_balance - transaction.amount
-                  elsif transaction.transaction_type == "expense" && transaction.status == "completed"
-                    current_balance + transaction.amount
-                  else
-                    current_balance
-                  end
-
-    update(balance: new_balance)
+  def update_balance
+    CalculatedBalance.new(self).calculate_balance
   end
 
   private
