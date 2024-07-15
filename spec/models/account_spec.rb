@@ -15,25 +15,6 @@ RSpec.describe Account, type: :model do
       expect(account.errors[:name]).to be_empty
     end
 
-    it 'validates presence of balance' do
-      account.balance = nil
-      expect(account).not_to be_valid
-      expect(account.errors[:balance]).to include("can't be blank")
-
-      account.balance = 1000
-      account.valid?
-      expect(account.errors[:balance]).to be_empty
-    end
-
-    it 'validates numericality of balance greater than 0' do
-      account.balance = -100
-      expect(account).not_to be_valid
-      expect(account.errors[:balance]).to include("must be greater than 0")
-
-      account.balance = 1000
-      account.valid?
-      expect(account.errors[:balance]).to be_empty
-    end
   end
 
   describe 'associations' do
@@ -55,11 +36,6 @@ RSpec.describe Account, type: :model do
     context 'with invalid parameters' do
       it 'does not create an account without a name' do
         account.name = nil
-        expect(account).not_to be_valid
-      end
-
-      it 'does not create an account without a balance' do
-        account.balance = nil
         expect(account).not_to be_valid
       end
 

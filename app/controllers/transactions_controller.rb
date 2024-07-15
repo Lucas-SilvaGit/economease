@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_transaction, only: %i[show edit update destroy]
 
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.joins(:account).where(accounts: { user_id: current_user.id })
   end
 
   def show
@@ -21,24 +19,39 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
 
-    if @transaction.save
-      redirect_to transactions_path, notice: "Transaction was successfully created."
+    unless valid_account?(@transaction.account)
+      flash.now[:alert] = "Invalid account"
+      return render :new, status: :unprocessable_entity
+    end
+
+    processor = TransactionProcessor.new(@transaction)
+
+    if processor.process_transaction(:save!)
+      redirect_to transactions_path, notice: "Transaction created successfully"
     else
+      flash.now[:alert] = @transaction.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    if @transaction.update(transaction_params)
-      redirect_to transactions_path, notice: "Transaction was successfully updated.", status: :see_other
+    @transaction.assign_attributes(transaction_params)
+    processor = TransactionProcessor.new(@transaction)
+
+    if processor.process_transaction(:save!)
+      redirect_to transactions_path, notice: "Transaction updated successfully"
     else
+      flash.now[:alert] = "Insufficient balance"
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @transaction.destroy!
-    redirect_to transactions_url, notice: "Transaction was successfully destroyed.", status: :see_other
+    ActiveRecord::Base.transaction do
+      @transaction.destroy!
+      CalculatedBalance.new(@transaction.account).call
+    end
+    redirect_to transactions_url, notice: "Transaction deleted successfully"
   end
 
   private
@@ -48,7 +61,13 @@ class TransactionsController < ApplicationController
   end
 
   def transaction_params
-    params.require(:transaction).permit(:amount, :transaction_type, :description, :date, :status, :account_id,
-                                        :category_id)
+    params.require(:transaction).permit(
+      :amount, :transaction_type, :description,
+      :date, :status, :account_id, :category_id
+    )
+  end
+
+  def valid_account?(account)
+    account && account.user_id == current_user.id
   end
 end
