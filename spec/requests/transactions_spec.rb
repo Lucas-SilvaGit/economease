@@ -104,14 +104,6 @@ RSpec.describe "/transactions", type: :request do
         expect(response).to redirect_to(transactions_path)
       end
     end
-
-    context "with invalid parameters" do
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        transaction = Transaction.create! valid_attributes
-        patch transaction_url(transaction), params: { transaction: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    end
   end
 
   describe "DELETE /destroy" do

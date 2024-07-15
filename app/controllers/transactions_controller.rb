@@ -26,18 +26,19 @@ class TransactionsController < ApplicationController
 
     processor = TransactionProcessor.new(@transaction)
 
-    if processor.create
+    if processor.process_transaction(:save!)
       redirect_to transactions_path, notice: "Transaction created successfully"
     else
-      flash.now[:alert] = "Insufficient balance"
+      flash.now[:alert] = @transaction.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
+    @transaction.assign_attributes(transaction_params)
     processor = TransactionProcessor.new(@transaction)
 
-    if processor.update(transaction_params)
+    if processor.process_transaction(:save!)
       redirect_to transactions_path, notice: "Transaction updated successfully"
     else
       flash.now[:alert] = "Insufficient balance"
@@ -46,8 +47,10 @@ class TransactionsController < ApplicationController
   end
 
   def destroy
-    processor = TransactionProcessor.new(@transaction)
-    processor.destroy
+    ActiveRecord::Base.transaction do
+      @transaction.destroy!
+      CalculatedBalance.new(@transaction.account).call
+    end
     redirect_to transactions_url, notice: "Transaction deleted successfully"
   end
 
