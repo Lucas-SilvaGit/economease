@@ -13,9 +13,12 @@ class GoalsController < ApplicationController
 
   def new
     @goal = Goal.new
+
+    @current_balance = UpdateGoalsCurrentBalanceService.new(current_user).calculate_current_balance
   end
 
   def edit
+    @current_balance = UpdateGoalsCurrentBalanceService.new(current_user).calculate_current_balance
   end
 
   def create
