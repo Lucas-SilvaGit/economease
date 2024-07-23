@@ -29,7 +29,6 @@ class TransactionsController < ApplicationController
     if processor.process_transaction(:save!)
       redirect_to transactions_path, notice: "Transaction created successfully"
     else
-      flash.now[:alert] = @transaction.errors.full_messages.to_sentence
       render :new, status: :unprocessable_entity
     end
   end
@@ -41,7 +40,6 @@ class TransactionsController < ApplicationController
     if processor.process_transaction(:save!)
       redirect_to transactions_path, notice: "Transaction updated successfully"
     else
-      flash.now[:alert] = "Insufficient balance"
       render :edit, status: :unprocessable_entity
     end
   end

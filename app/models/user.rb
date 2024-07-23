@@ -11,4 +11,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :first_name, :last_name, presence: true
+
+  def total_account_balance
+    accounts.sum(:balance)
+  end
 end
