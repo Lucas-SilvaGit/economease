@@ -9,6 +9,6 @@ class SufficientBalanceService
     return true if @transaction.transaction_type == "income"
     return true if @transaction.transaction_type == "expense" && @transaction.status != "completed"
 
-    @transaction.account.balance >= @transaction.amount
+    @transaction.account.balance.to_f >= @transaction.amount.to_f
   end
 end
