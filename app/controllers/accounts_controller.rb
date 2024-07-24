@@ -6,18 +6,15 @@ class AccountsController < ApplicationController
 
   def index
     @accounts = current_user.accounts
-    # @accounts = Account.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @account = Account.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @account = current_user.accounts.new(account_params)

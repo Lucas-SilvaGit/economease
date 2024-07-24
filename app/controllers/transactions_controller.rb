@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_transaction, only: %i[show edit update destroy]
@@ -6,15 +8,13 @@ class TransactionsController < ApplicationController
     @transactions = Transaction.joins(:account).where(accounts: { user_id: current_user.id })
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @transaction = Transaction.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @transaction = Transaction.new(transaction_params)
