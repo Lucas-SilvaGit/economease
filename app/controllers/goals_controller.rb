@@ -8,8 +8,7 @@ class GoalsController < ApplicationController
     @goals = current_user.goals
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @goal = Goal.new
