@@ -20,7 +20,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
 
     unless valid_account?(@transaction.account)
-      flash.now[:alert] = "Invalid account"
+      @transaction.errors.add(:account, "is invalid")
       return render :new, status: :unprocessable_entity
     end
 
@@ -35,6 +35,12 @@ class TransactionsController < ApplicationController
 
   def update
     @transaction.assign_attributes(transaction_params)
+
+    unless valid_account?(@transaction.account)
+      @transaction.errors.add(:account, "is invalid")
+      return render :edit, status: :unprocessable_entity
+    end
+
     processor = TransactionProcessor.new(@transaction)
 
     if processor.process_transaction(:save!)
