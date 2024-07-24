@@ -8,6 +8,7 @@ class SufficientBalanceService
   def call
     return true if @transaction.transaction_type == "income"
     return true if @transaction.transaction_type == "expense" && @transaction.status != "completed"
+
     @transaction.account.balance >= @transaction.amount
   end
 end
