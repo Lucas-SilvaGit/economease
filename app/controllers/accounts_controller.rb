@@ -5,7 +5,7 @@ class AccountsController < ApplicationController
   before_action :set_account, only: %i[show edit update destroy]
 
   def index
-    @accounts = current_user.accounts
+    @accounts = current_user.accounts.order(created_at: :asc)
   end
 
   def show; end
