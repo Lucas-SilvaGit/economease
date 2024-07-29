@@ -12,6 +12,6 @@ class Transaction < ApplicationRecord
   enum transaction_type: { income: "income", expense: "expense" }
   enum status: { pending: "pending", completed: "completed" }
 
-  scope :income, -> { where(transaction_type: 'income') }
-  scope :expense, -> { where(transaction_type: 'expense') }
+  scope :income, -> { where(transaction_type: "income") }
+  scope :expense, -> { where(transaction_type: "expense") }
 end
