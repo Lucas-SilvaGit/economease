@@ -5,7 +5,7 @@ class TransactionsController < ApplicationController
   before_action :set_transaction, only: %i[show edit update destroy]
 
   def index
-    @transactions = Transaction.joins(:account).where(accounts: { user_id: current_user.id })
+    @transactions = Transaction.joins(:account).where(accounts: { user_id: current_user.id }).order(due_date: :desc)
   end
 
   def show; end
@@ -67,7 +67,7 @@ class TransactionsController < ApplicationController
   def transaction_params
     params.require(:transaction).permit(
       :amount, :transaction_type, :description,
-      :date, :status, :account_id, :category_id
+      :due_date, :status, :account_id, :category_id
     )
   end
 

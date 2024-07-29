@@ -43,7 +43,7 @@ RSpec.describe Transaction, type: :model do
         amount: 100.0,
         transaction_type: 'expense',
         description: 'Test Description',
-        date: Date.today,
+        due_date: Date.today,
         account: create(:account, user: create(:user)),
         category: create(:category)
       )
@@ -56,7 +56,7 @@ RSpec.describe Transaction, type: :model do
         amount: 100.0,
         transaction_type: 'income',
         description: 'Test Description',
-        date: Date.today,
+        due_date: Date.today,
         account: create(:account, user: create(:user)),
         category: create(:category)
       )

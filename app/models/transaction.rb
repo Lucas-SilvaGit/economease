@@ -6,7 +6,7 @@ class Transaction < ApplicationRecord
   belongs_to :account
   belongs_to :category
 
-  validates :transaction_type, :description, :date, :status, presence: true
+  validates :transaction_type, :description, :due_date, :status, presence: true
   validates :amount, numericality: { greater_than: 0 }, presence: true
 
   enum transaction_type: { income: "income", expense: "expense" }

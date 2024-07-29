@@ -9,7 +9,7 @@ RSpec.describe "/transactions", type: :request do
       amount: 100.0,
       transaction_type: "expense",
       description: "Test Transaction",
-      date: Time.zone.now,
+      due_date: Time.zone.now,
       account_id: account.id,
       category_id: category.id,
       status: 'pending'
@@ -17,7 +17,7 @@ RSpec.describe "/transactions", type: :request do
   }
 
   let(:invalid_attributes) {
-    { amount: -10.0, transaction_type: "", description: "", date: nil, account_id: nil, category_id: nil }
+    { amount: -10.0, transaction_type: "", description: "", due_date: nil, account_id: nil, category_id: nil }
   }
 
   before do
@@ -86,7 +86,7 @@ RSpec.describe "/transactions", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        { amount: 200.0, transaction_type: "expense", description: "Updated Transaction", date: Time.zone.now, account_id: account.id, category_id: category.id }
+        { amount: 200.0, transaction_type: "expense", description: "Updated Transaction", due_date: Time.zone.now, account_id: account.id, category_id: category.id }
       }
 
       it "updates the requested transaction" do

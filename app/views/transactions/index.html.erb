@@ -9,7 +9,7 @@
         <th scope="col" class="py-3 px-6 text-center">Description</th>
         <th scope="col" class="py-3 px-6 text-center">Amount</th>
         <th scope="col" class="py-3 px-6 text-center">Transaction Type</th>
-        <th scope="col" class="py-3 px-6 text-center">Date</th>
+        <th scope="col" class="py-3 px-6 text-center">Due Date</th>
         <th scope="col" class="py-3 px-6 text-center">Account</th>
         <th scope="col" class="py-3 px-6 text-center">Category</th>
         <th scope="col" class="py-3 px-6 text-center">Status</th>
@@ -22,7 +22,7 @@
           <td class="py-3 px-6 text-center align-middle"><%= transaction.description %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.amount %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.transaction_type %></td>
-          <td class="py-3 px-6 text-center align-middle"><%= transaction.date.strftime('%d/%m/%Y') %></td>
+          <td class="py-3 px-6 text-center align-middle"><%= transaction.due_date.strftime('%d/%m/%Y') %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.account.name %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.category.name %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.status %></td>
