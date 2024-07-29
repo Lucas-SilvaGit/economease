@@ -12,9 +12,7 @@ class Account < ApplicationRecord
   before_validation :set_default_balance
 
   def partial_balance
-    income = transactions.income.sum(:amount)
-    expense = transactions.expense.sum(:amount)
-    income - expense
+    transactions.income.sum(:amount) - transactions.expense.sum(:amount)
   end
 
   def update_balance
