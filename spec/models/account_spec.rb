@@ -50,4 +50,36 @@ RSpec.describe Account, type: :model do
       end
     end
   end
+
+  describe 'calculating partial balance' do
+    context "should be a success" do
+      it 'calculates the partial balance correctly' do
+        transaction1 = create(:transaction, account: account, amount: 1000, transaction_type: 'income')
+        transaction2 = create(:transaction, account: account, amount: 300, transaction_type: 'expense')
+
+        partial_balance = account.partial_balance
+
+        expect(partial_balance).to eq(700)
+      end
+    end
+
+    context "should be a fail" do
+      it 'calculate the partial balance incorrectly' do
+        transaction1 = create(:transaction, account: account, amount: 800, transaction_type: 'income')
+        transaction2 = create(:transaction, account: account, amount: 300, transaction_type: 'expense')
+
+        partial_balance = account.partial_balance
+
+        expect(partial_balance).not_to eq(700)
+      end
+    end
+  end
+
+  describe 'callbacks' do
+    it 'sets default balance before validation' do
+      new_account = build(:account, name: 'Checking', user: user, balance: nil)
+      new_account.valid?
+      expect(new_account.balance).to eq(0)
+    end
+  end
 end
