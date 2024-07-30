@@ -5,7 +5,7 @@ class TransactionsController < ApplicationController
   before_action :set_transaction, only: %i[show edit update destroy]
 
   def index
-    @transactions = Transaction.joins(:account).where(accounts: { user_id: current_user.id }).order(due_date: :desc)
+    @transactions = Transaction.for_user(current_user)
   end
 
   def show; end
