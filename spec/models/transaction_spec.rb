@@ -85,32 +85,47 @@ RSpec.describe Transaction, type: :model do
   end
 
   describe 'creating a transaction' do
+    let(:transaction_attributes) do
+      {
+        amount: 1000,
+        transaction_type: 'expense',
+        account: account,
+        category: category
+      }
+    end
+
     context 'with valid parameters' do
       it 'creates a new transaction successfully' do
-        transaction = build(:transaction, amount: 1000, transaction_type: 'expense', account: account, category: category)
+        transaction = create(:transaction, transaction_attributes)
+
         expect(transaction).to be_valid
-        transaction.save
-        expect(Transaction.last).to eq(transaction)
+        expect(Transaction.last).to have_attributes(
+          amount: transaction_attributes[:amount],
+          transaction_type: transaction_attributes[:transaction_type],
+          account: transaction_attributes[:account],
+          category: transaction_attributes[:category]
+        )
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a transaction without an amount' do
-        transaction.amount = nil
+        transaction = build(:transaction, transaction_attributes.merge(amount: nil))
         expect(transaction).not_to be_valid
       end
 
       it 'does not create a transaction with a non-numeric amount' do
-        transaction.amount = 'one hundred'
+        transaction = build(:transaction, transaction_attributes.merge(amount: 'one hundred'))
         expect(transaction).not_to be_valid
       end
 
       it 'does not create a transaction without a transaction_type' do
-        transaction.transaction_type = nil
+        transaction = build(:transaction, transaction_attributes.merge(transaction_type: nil))
         expect(transaction).not_to be_valid
       end
     end
   end
+
 
   describe 'scopes' do
     it 'returns only income transactions' do
