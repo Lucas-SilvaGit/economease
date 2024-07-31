@@ -6,6 +6,11 @@ RSpec.describe Transaction, type: :model do
   let(:category) { create(:category) }
   let(:transaction) { create(:transaction, account: account, category: category) }
 
+  before do
+    create(:transaction, account: account, category: category, transaction_type: 'income', due_date: 1.day.ago)
+    create(:transaction, account: account, category: category, transaction_type: 'expense', due_date: 2.days.ago)
+  end
+
   describe 'validations' do
     it 'validates presence of amount' do
       transaction.amount = nil
@@ -104,6 +109,24 @@ RSpec.describe Transaction, type: :model do
         transaction.transaction_type = nil
         expect(transaction).not_to be_valid
       end
+    end
+  end
+
+  describe 'scopes' do
+    it 'returns only income transactions' do
+      expect(Transaction.income.count).to eq(1)
+      expect(Transaction.income.pluck(:transaction_type)).to all(eq('income'))
+    end
+
+    it 'returns only expense transactions' do
+      expect(Transaction.expense.count).to eq(1)
+      expect(Transaction.expense.pluck(:transaction_type)).to all(eq('expense'))
+    end
+
+    it 'returns transactions for a specific user ordered by due_date desc' do
+      transactions = Transaction.for_user(user).order(due_date: :desc)
+      expect(transactions.count).to eq(2)
+      expect(transactions.first.due_date).to be > transactions.second.due_date
     end
   end
 end
