@@ -14,19 +14,21 @@ RSpec.describe Account, type: :model do
 
       it "returns an error message" do
         account.valid?
+
         expect(account.errors[:name]).to include("can't be blank")
       end
     end
 
     context "whe name is present" do
-      before { account.name = "Savings"}
+      before { account.name = "Savings" }
 
-      it 'is valid' do
+      it "is valid" do
         expect(account).to be_valid
       end
 
       it "does not return an error message" do
         account.valid?
+
         expect(account.errors[:name]).to be_empty
       end
     end
@@ -40,34 +42,39 @@ RSpec.describe Account, type: :model do
     end
   end
 
-  describe 'creating an account' do
-    context 'with valid parameters' do
-      it 'creates a new account successfully' do
+  describe "creating an account" do
+    context "with valid parameters" do
+      it "creates a new account successfully" do
         expect(account).to be_valid
+
         account.save
+
         expect(Account.last).to eq(account)
       end
     end
 
-    context 'with invalid parameters' do
-      it 'does not create an account without a name' do
+    context "with invalid parameters" do
+      it "does not create an account without a name" do
         account.name = nil
+
         is_expected.not_to be_valid
       end
 
-      it 'does not create an account with a negative balance' do
+      it "does not create an account with a negative balance" do
         account.balance = -100
+
         is_expected.not_to be_valid
       end
 
-      it 'does not create an account with a non-numeric balance' do
-        account.balance = 'one hundred'
+      it "does not create an account with a non-numeric balance" do
+        account.balance = "one hundred"
+
         is_expected.not_to be_valid
       end
     end
   end
 
-  describe 'calculating partial balance' do
+  describe "calculating partial balance" do
     let(:transaction1) { create(:transaction, account: account, amount: transaction_amount1, transaction_type: transaction_type1) }
     let(:transaction2) { create(:transaction, account: account, amount: transaction_amount2, transaction_type: transaction_type2) }
 
@@ -76,41 +83,42 @@ RSpec.describe Account, type: :model do
       transaction2
     end
 
-    context 'when calculations are correct' do
+    context "when calculations are correct" do
       let(:transaction_amount1) { 1000 }
-      let(:transaction_type1) { 'income' }
+      let(:transaction_type1) { "income" }
       let(:transaction_amount2) { 300 }
-      let(:transaction_type2) { 'expense' }
+      let(:transaction_type2) { "expense" }
 
-      it 'calculates the partial balance correctly' do
+      it "calculates the partial balance correctly" do
         partial_balance = account.partial_balance
+
         expect(partial_balance).to eq(700)
       end
     end
 
-    context 'when calculations are incorrect' do
+    context "when calculations are incorrect" do
       let(:transaction_amount1) { 800 }
-      let(:transaction_type1) { 'income' }
+      let(:transaction_type1) { "income" }
       let(:transaction_amount2) { 300 }
-      let(:transaction_type2) { 'expense' }
+      let(:transaction_type2) { "expense" }
 
-      it 'calculates the partial balance incorrectly' do
+      it "calculates the partial balance incorrectly" do
         partial_balance = account.partial_balance
+
         expect(partial_balance).not_to eq(700)
       end
     end
   end
 
-  describe 'callbacks' do
-    let(:new_account) { build(:account, name: 'Checking', user: user, balance: nil) }
+  describe "callbacks" do
+    let(:new_account) { build(:account, name: "Checking", user: user, balance: nil) }
 
     before do
       new_account.valid?
     end
 
-    it 'sets default balance before validation' do
+    it "sets default balance before validation" do
       expect(new_account.balance).to eq(0)
     end
   end
-
 end
