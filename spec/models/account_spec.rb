@@ -6,7 +6,7 @@ RSpec.describe Account, type: :model do
 
   describe "validations" do
     context "when name is not present" do
-      before { account.name = nil}
+      before { account.name = nil }
 
       it "is not valid" do
         is_expected.not_to be_valid
