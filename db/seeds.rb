@@ -16,17 +16,19 @@ User.create!(
   password: '123456',
   password_confirmation: '123456'
 )
+puts "Default user created successfully"
 
 # Create a new account for the default user
-10.times do |i|
+2.times do |i|
 Account.create!(
   name: "Default Account #{i}",
-  balance: Faker::Number.decimal(l_digits: 2),
   user_id: User.first.id
 )
 end
 
-# Categorias para um sistema de controle financeiro pessoal
+puts "Account Default created successfuly"
+
+# Creating categories
 categories = [
   'Alimentação',
   'Transporte',
@@ -41,9 +43,24 @@ categories = [
   'Outros'
 ]
 
-# Itera sobre as categorias e as cria no banco de dados, se ainda não existirem
 categories.each do |name|
   Category.find_or_create_by(name: name)
 end
 
-puts "Categorias criadas com sucesso!"
+puts "Categories created successfuly"
+
+#Creating transactions
+
+# Create a new transaction for the default account
+20.times do |i|
+  Transaction.create!(
+    amount: Faker::Number.decimal(l_digits: 2),
+    transaction_type: ['income', 'expense'].sample,
+    description: Faker::Lorem.sentence,
+    account_id: Account.all.sample.id,
+    category_id: Category.all.sample.id,
+    due_date: Faker::Date.forward(days: 30),
+    status: ['pending', 'completed'].sample
+  )
+end
+puts "Transactions created successfuly"
