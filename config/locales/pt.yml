@@ -222,16 +222,16 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: pm
-  Account:
-    Actions:
+  account:
+    actions:
       create: "Criar conta"
       edit: "Editar conta"
       new: "Nova conta"
       show: "Ver conta"
       destroy: "Deletar conta"
-    Notice:
+    notice:
       create: "Conta criada com sucesso"
       edit: "Conta atualizada com sucesso"
       destroy: "Conta deletada com sucesso"
-    Balance:
+    balance:
       insufficient: "Saldo Insuficiente"

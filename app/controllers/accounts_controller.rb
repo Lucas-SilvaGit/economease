@@ -20,7 +20,7 @@ class AccountsController < ApplicationController
     @account = current_user.accounts.new(account_params)
 
     if @account.save
-      redirect_to accounts_path, notice: I18n.t("Account.Notice.create")
+      redirect_to accounts_path, notice: I18n.t("account.notice.create")
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class AccountsController < ApplicationController
 
   def update
     if @account.update(account_params)
-      redirect_to accounts_path, notice: I18n.t("Account.Notice.edit"), status: :see_other
+      redirect_to accounts_path, notice: I18n.t("account.notice.edit"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class AccountsController < ApplicationController
 
   def destroy
     @account.destroy!
-    redirect_to accounts_url, notice:  I18n.t("Account.Notice.destroy"), status: :see_other
+    redirect_to accounts_url, notice:  I18n.t("account.notice.destroy"), status: :see_other
   end
 
   private
