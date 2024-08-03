@@ -233,3 +233,5 @@ pt-BR:
       create: "Conta criada com sucesso"
       edit: "Conta atualizada com sucesso"
       destroy: "Conta deletada com sucesso"
+    Balance:
+      insufficient: "Saldo Insuficiente"
