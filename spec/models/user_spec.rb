@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
     it 'validates presence of email' do
       user.email = nil
       expect(user).not_to be_valid
-      expect(user.errors[:email]).to include("can't be blank")
+      expect(user.errors[:email]).to include("não pode ficar em branco")
 
       user.email = Faker::Internet.unique.email
       user.valid?
@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
       existing_user = create(:user)
       user.email = existing_user.email
       expect(user).not_to be_valid
-      expect(user.errors[:email]).to include('has already been taken')
+      expect(user.errors[:email]).to include('já está em uso')
 
       user.email = Faker::Internet.unique.email
       user.valid?
@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
     it 'validates presence of password' do
       user.password = nil
       expect(user).not_to be_valid
-      expect(user.errors[:password]).to include("can't be blank")
+      expect(user.errors[:password]).to include("não pode ficar em branco")
 
       user.password = 'securepassword'
       user.valid?
@@ -42,7 +42,7 @@ RSpec.describe User, type: :model do
     it 'validates length of password' do
       user.password = 'short'
       expect(user).not_to be_valid
-      expect(user.errors[:password]).to include('is too short (minimum is 6 characters)')
+      expect(user.errors[:password]).to include('é muito curto (mínimo: 6 caracteres)')
 
       user.password = 'adequatelylongpassword'
       user.valid?

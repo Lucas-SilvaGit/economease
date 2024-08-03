@@ -1,0 +1,13 @@
+pt-BR:
+  devise:
+    failure:
+      user:
+        invalid: "Login ou senha inválidos"
+        not_found_in_database: "Usuário não encontrado no banco de dados"
+        unauthenticated: "Você precisa fazer login ou se registrar antes de continuar."
+        already_authenticated: "Você já está autenticado."
+    sessions:
+      user:
+        signed_in: "Login efetuado com sucesso!"
+        signed_out: "Saiu com sucesso."
+        already_signed_out: "Você já esta desconectado."
