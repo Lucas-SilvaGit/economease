@@ -20,7 +20,7 @@ pt-BR:
     - jan
     - fev
     - mar
-    - abr
+    - abr 
     - mai
     - jun
     - jul
@@ -222,10 +222,24 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: pm
+  actions:
+    back: "Voltar"
+    cancel: "Cancelar"
+    create: "Criar"
+    destroy: "Deletar"
+    edit: "Editar"
+    new: "Novo"
+    show: "Ver"
+    update: "Atualizar"
+    save: "Salvar"
+  models:
+    account: Contas
+    transaction: Transações
+    category: Categorias
   account:
     actions:
       create: "Criar conta"
-      edit: "Editar conta"
+      edit: "Editando conta"
       new: "Nova conta"
       show: "Ver conta"
       destroy: "Deletar conta"
@@ -238,7 +252,7 @@ pt-BR:
   transaction:
     actions:
       create: "Criar conta"
-      edit: "Editar conta"
+      edit: "Editando conta"
       new: "Nova conta"
       show: "Ver conta"
       destroy: "Deletar conta"
@@ -248,3 +262,16 @@ pt-BR:
       destroy: "Conta deletada com sucesso"
     errors:
       invalid: "é inválida"
+  category:
+    actions:
+      create: "Criar categoria"
+      edit: "Editando categoria"
+      new: "Nova categoria"
+      show: "Ver categoria"
+      destroy: "Deletar categoria"
+    notice:
+      create: "Categoria criada com sucesso"
+      edit: "Categoria atualizada com sucesso"
+      destroy: "Categoria deletada com sucesso"
+    link_to:
+      back_to_categories: "Voltar para categorias"

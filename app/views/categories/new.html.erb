@@ -1,5 +1,5 @@
-<% content_for(:page_title, "Categories") %>
-<%= render "form", category: @category,form_title: "New Category" %>
+<% content_for(:page_title, I18n.t("models.category")) %>
+<%= render "form", category: @category,form_title: I18n.t("category.actions.new") %>
 <div class="mt-6 flex justify-center">
-  <%= link_to "Back to categories", categories_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+  <%= link_to I18n.t("actions.back"), categories_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
 </div>
