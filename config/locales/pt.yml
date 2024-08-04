@@ -235,3 +235,16 @@ pt-BR:
       destroy: "Conta deletada com sucesso"
     balance:
       insufficient: "Saldo Insuficiente"
+  transaction:
+    actions:
+      create: "Criar conta"
+      edit: "Editar conta"
+      new: "Nova conta"
+      show: "Ver conta"
+      destroy: "Deletar conta"
+    notice:
+      create: "Conta criada com sucesso"
+      edit: "Conta atualizada com sucesso"
+      destroy: "Conta deletada com sucesso"
+    errors:
+      invalid: "é inválida"
