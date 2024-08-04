@@ -1,5 +1,5 @@
-<% content_for(:page_title, "Transactions") %>
-<%= render "form", transaction: @transaction,form_title: "New transaction" %>
+<% content_for(:page_title, I18n.t("models.transaction")) %>
+<%= render "form", transaction: @transaction,form_title: I18n.t("transaction.actions.new") %>
 <div class="mt-6 flex justify-center">
-  <%= link_to "Back to transactions", transactions_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+  <%= link_to I18n.t("actions.back"), transactions_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
 </div>

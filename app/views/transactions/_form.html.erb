@@ -12,35 +12,35 @@
   <% end %>
   <div class="grid grid-cols-1 gap-6">
     <div>
-      <%= form.label :description, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label :description, I18n.t("transaction.fields.description"), class: "block text-sm font-medium text-gray-700" %>
       <%= form.text_field :description, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
     <div>
-      <%= form.label :amount, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label :amount, I18n.t("transaction.fields.amount"), class: "block text-sm font-medium text-gray-700" %>
       <%= form.text_field :amount, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
     <div>
-      <%= form.label :transaction_type, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label :transaction_type, I18n.t("transaction.fields.transaction_type"), class: "block text-sm font-medium text-gray-700" %>
       <%= form.select :transaction_type, Transaction.transaction_types.keys.map { |type| [type.humanize, type] }, {include_blank: "Selecione..."}, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
     </div>
     <div>
-      <%= form.label :due_date, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label :due_date, I18n.t("transaction.fields.due_date"), class: "block text-sm font-medium text-gray-700" %>
       <%= form.date_field :due_date, value: Date.current.to_s, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
     <div>
-      <%= form.label :account_id, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label :account_id, I18n.t("transaction.fields.account"), class: "block text-sm font-medium text-gray-700" %>
       <%= form.select :account_id, current_user.accounts.map { |account| [account.name, account.id]}, { include_blank: "Selecione..." }, {class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
     </div>
     <div>
-      <%= form.label :category_id, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label :category_id, I18n.t("transaction.fields.category"), class: "block text-sm font-medium text-gray-700" %>
       <%= form.select :category_id, Category.all.map { |category| [category.name, category.id]}, { include_blank: "Selecione..." }, {class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
     </div>
     <div>
-      <%= form.label :status, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label :status, I18n.t("transaction.fields.status"), class: "block text-sm font-medium text-gray-700" %>
       <%= form.select :status, Transaction.statuses.keys.map { |status| [status.humanize, status] }, { include_blank: "Selecione..." }, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
     </div>
   </div>
   <div class="mt-6 flex justify-end">
-    <%= form.submit 'Save', class: "inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+    <%= form.submit I18n.t("actions.save"), class: "inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
   </div>
 <% end %>

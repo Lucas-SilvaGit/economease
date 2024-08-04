@@ -151,6 +151,8 @@ pt-BR:
       create: Criar %{model}
       submit: Salvar %{model}
       update: Atualizar %{model}
+    table:
+      actions: "Ações"
   number:
     currency:
       format:
@@ -259,17 +261,25 @@ pt-BR:
       partial_balance: "Saldo Parcial"
   transaction:
     actions:
-      create: "Criar conta"
-      edit: "Editando conta"
-      new: "Nova conta"
-      show: "Ver conta"
-      destroy: "Deletar conta"
+      create: "Criar transação"
+      edit: "Editando transação"
+      new: "Nova transação"
+      show: "Ver transação"
+      destroy: "Deletar transação"
     notice:
-      create: "Conta criada com sucesso"
-      edit: "Conta atualizada com sucesso"
-      destroy: "Conta deletada com sucesso"
+      create: "Transação criada com sucesso"
+      edit: "Transação atualizada com sucesso"
+      destroy: "Transação deletada com sucesso"
     errors:
       invalid: "é inválida"
+    fields:
+      description: "Descrição"
+      amount: "Valor"
+      transaction_type: "Tipo de Transação"
+      due_date: "Data de Vecimento"
+      account: "Conta"
+      category: "Categoria"
+      status: "Status"
   category:
     actions:
       create: "Criar categoria"
@@ -283,3 +293,6 @@ pt-BR:
       destroy: "Categoria deletada com sucesso"
     link_to:
       back_to_categories: "Voltar para categorias"
+    fields:
+      name: "Nome"
+      name_of_category: "Nome da Categoria"
