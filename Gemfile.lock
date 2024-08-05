@@ -363,7 +363,7 @@ DEPENDENCIES
   rails (~> 7.1.1)
   rails-i18n
   redis (>= 4.0.1)
-  rspec-rails (~> 6.1.0)
+  rspec-rails
   rubocop-rails
   shoulda-matchers
   solargraph-rails
