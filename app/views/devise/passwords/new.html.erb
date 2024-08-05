@@ -1,16 +1,16 @@
 <% content_for(:auth_header) do %>
-  <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Forgot your password?</h2>
+  <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= I18n.t("devise.passwords.new.forgot_your_password") %></h2>
 <% end %>
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, data: {turbo: false}) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <div class="mb-3">
-    <%= f.label :email, class: label_class %>
+    <%= f.label :email, t("activerecord.attributes.user.email"), class: label_class %>
     <div class="mt-1">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: input_class %>
     </div>
   </div>
   <div class="actions mt-6">
-    <%= f.submit "Send me reset password instructions", class: form_button_class %>
+    <%= f.submit I18n.t("devise.passwords.new.send_me_reset_password_instructions"), class: form_button_class %>
   </div>
 <% end %>
 <div class="mt-4 text-center">
