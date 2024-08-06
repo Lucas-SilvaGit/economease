@@ -52,16 +52,13 @@ RSpec.describe Transaction, type: :model do
     end
 
     context "when using the for_user scope" do
-      let(:user) { create(:user) }
-      let(:another_user) { create(:user) }
-      let(:user_account) { create(:account, user: user) }
-      let(:another_account) { create(:account, user: another_user) }
+      let(:user_account) { create(:account) }
+      let!(:transactions) { create_list(:transaction, 3, account: user_account) }
+      let!(:other_transactions) { create_list(:transaction, 3) }
 
       it "returns transactions for the specified user" do
-        user_transaction = create(:transaction, account: user_account)
-        another_user_transaction = create(:transaction, account: another_account)
-
-        expect(Transaction.for_user(user)).not_to include(another_user_transaction)
+        expect(Transaction.count).to eq(6)
+        expect(Transaction.for_user(user_account.user)).to eq(transactions)
       end
     end
   end
