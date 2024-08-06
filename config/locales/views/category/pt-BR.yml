@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    models:
+      category:
+        actions:
+          create: "Criar categoria"
+          edit: "Editando categoria"
+          new: "Nova categoria"
+          show: "Ver categoria"
+          destroy: "Deletar categoria"
+        notice:
+          create: "Categoria criada com sucesso"
+          edit: "Categoria atualizada com sucesso"
+          destroy: "Categoria deletada com sucesso"
+        link_to:
+          back_to_categories: "Voltar para categorias"
+        fields:
+          name: "Nome"
+          name_of_category: "Nome da Categoria"

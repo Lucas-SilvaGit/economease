@@ -1,0 +1,24 @@
+en:
+  activerecord:
+    models:
+      goal:
+    actions:
+      create: "Create goal"
+      edit: "Editing goal"
+      new: "New goal"
+      show: "View goal"
+      destroy: "Delete goal"
+      details: "View goal details"
+    notice:
+      create: "Goal successfully created"
+      edit: "Goal successfully updated"
+      destroy: "Goal successfully deleted"
+    fields:
+      name: "Name"
+      target_amount: "Target Amount"
+      current_amount: "Current Amount"
+      target_date: "Target Date"
+      saved_value: "Saved Value"
+    messages:
+      message1: "Manage all your goals in one place"
+      message2: "Here you can view and manage all your goals. Click on a goal to see more details."
