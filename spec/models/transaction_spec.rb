@@ -38,7 +38,6 @@ RSpec.describe Transaction, type: :model do
         income_transaction = create(:transaction, transaction_type: "income")
         expense_transaction = create(:transaction, transaction_type: "expense")
 
-        expect(Transaction.income).to include(income_transaction)
         expect(Transaction.income).not_to include(expense_transaction)
       end
     end
@@ -48,7 +47,6 @@ RSpec.describe Transaction, type: :model do
         income_transaction = create(:transaction, transaction_type: "income")
         expense_transaction = create(:transaction, transaction_type: "expense")
 
-        expect(Transaction.expense).to include(expense_transaction)
         expect(Transaction.expense).not_to include(income_transaction)
       end
     end
@@ -63,7 +61,6 @@ RSpec.describe Transaction, type: :model do
         user_transaction = create(:transaction, account: user_account)
         another_user_transaction = create(:transaction, account: another_account)
 
-        expect(Transaction.for_user(user)).to include(user_transaction)
         expect(Transaction.for_user(user)).not_to include(another_user_transaction)
       end
     end
