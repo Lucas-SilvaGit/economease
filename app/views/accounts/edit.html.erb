@@ -1,6 +1,6 @@
-<% content_for(:page_title, I18n.t("models.account")) %>
-<%= render "form", account: @account, form_title: I18n.t("account.actions.edit") %>
+<% content_for(:page_title, I18n.t("models.accounts")) %>
+<%= render "form", account: @account, form_title: I18n.t("views.account.actions.edit") %>
 <div class="mt-6 flex justify-center space-x-4">
   <%= link_to I18n.t("actions.back"), accounts_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-  <%= button_to I18n.t("account.actions.destroy"), @account, method: :delete, data: { confirm: "Are you sure?" }, class: "inline-flex items-center px-4 py-2 border border-red-300 rounded-md shadow-sm text-sm font-medium text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
+  <%= button_to I18n.t("actions.destroy"), @account, method: :delete, data: { confirm: "Are you sure?" }, class: "inline-flex items-center px-4 py-2 border border-red-300 rounded-md shadow-sm text-sm font-medium text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
 </div>

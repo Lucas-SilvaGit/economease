@@ -2,19 +2,7 @@ pt-BR:
   activerecord:
     models:
       transaction:
-        actions:
-          create: "Criar transação"
-          edit: "Editando transação"
-          new: "Nova transação"
-          show: "Ver transação"
-          destroy: "Deletar transação"
-        notice:
-          create: "Transação criada com sucesso"
-          edit: "Transação atualizada com sucesso"
-          destroy: "Transação deletada com sucesso"
-        errors:
-          invalid: "é inválida"
-        fields:
+        attributes:
           description: "Descrição"
           amount: "Valor"
           transaction_type: "Tipo de Transação"

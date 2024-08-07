@@ -1,9 +1,9 @@
-<% content_for(:page_title, I18n.t("models.goal")) %>
+<% content_for(:page_title, I18n.t("models.goals")) %>
 <div class="bg-white py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:text-center">
-      <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><%= I18n.t("goal.messages.message1") %></p>
-      <p class="mt-6 text-lg leading-8 text-gray-600"><%= I18n.t("goal.messages.message2") %></p>
+      <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><%= I18n.t("views.goal.messages.message1") %></p>
+      <p class="mt-6 text-lg leading-8 text-gray-600"><%= I18n.t("views.goal.messages.message2") %></p>
     </div>
     <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
       <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
@@ -17,17 +17,17 @@
               <% end %>
               <%= goal.name %>
             </dt>
-            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("goal.fields.target_amount") %>:</dt>
+            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("activerecord.models.goal.attributes.target_amount") %>:</dt>
             <dd class="text-base leading-7 text-gray-600"><%= number_to_currency(goal.target_amount) %></dd>
-            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("goal.fields.current_amount") %>:</dt>
+            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("activerecord.models.goal.attributes.current_amount") %>:</dt>
             <dd class="text-base leading-7 text-gray-600"><%= number_to_currency(goal.current_amount) %></dd>
-            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("goal.fields.target_date") %>:</dt>
+            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("activerecord.models.goal.attributes.target_date") %>:</dt>
             <dd class="text-base leading-7 text-gray-600"><%= goal.target_date.strftime("%B %d, %Y") %></dd>
-            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("goal.fields.saved_value") %>:</dt>
+            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("activerecord.models.goal.attributes.saved_value") %>:</dt>
             <dd class="text-base leading-7 text-gray-600"><%= number_to_currency(goal.saved_value) %></dd>
             <dd class="mt-1 text-sm leading-5 pt-2">
               <%= link_to edit_goal_path(goal), class: "flex items-center text-indigo-500 hover:text-indigo-900" do %>
-                <%= I18n.t("goal.actions.details") %>
+                <%= I18n.t("views.goal.actions.details") %>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 ml-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                 </svg>
@@ -38,7 +38,7 @@
       </dl>
     </div>
     <div class="mx-auto mt-8 max-w-2xl lg:mt-12 lg:max-w-4xl lg:text-center">
-      <%= link_to I18n.t("goal.actions.new"), new_goal_path, class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+      <%= link_to I18n.t("views.goal.actions.new"), new_goal_path, class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
     </div>
   </div>
 </div>
