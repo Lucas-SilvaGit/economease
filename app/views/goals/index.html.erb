@@ -17,13 +17,13 @@
               <% end %>
               <%= goal.name %>
             </dt>
-            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("activerecord.models.goal.attributes.target_amount") %>:</dt>
+            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("activerecord.attributes.target_amount") %>:</dt>
             <dd class="text-base leading-7 text-gray-600"><%= number_to_currency(goal.target_amount) %></dd>
-            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("activerecord.models.goal.attributes.current_amount") %>:</dt>
+            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("activerecord.attributes.current_amount") %>:</dt>
             <dd class="text-base leading-7 text-gray-600"><%= number_to_currency(goal.current_amount) %></dd>
-            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("activerecord.models.goal.attributes.target_date") %>:</dt>
+            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("activerecord.attributes.target_date") %>:</dt>
             <dd class="text-base leading-7 text-gray-600"><%= goal.target_date.strftime("%B %d, %Y") %></dd>
-            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("activerecord.models.goal.attributes.saved_value") %>:</dt>
+            <dt class="mt-1 text-base font-semibold leading-7 text-gray-900"><%= I18n.t("activerecord.attributes.saved_value") %>:</dt>
             <dd class="text-base leading-7 text-gray-600"><%= number_to_currency(goal.saved_value) %></dd>
             <dd class="mt-1 text-sm leading-5 pt-2">
               <%= link_to edit_goal_path(goal), class: "flex items-center text-indigo-500 hover:text-indigo-900" do %>

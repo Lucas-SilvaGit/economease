@@ -1,18 +1,19 @@
 pt-BR:
   activerecord:
     models:
-      account:
-        attributes:
-          name: "Nome"
-          balance: "Saldo"
-          partial_balance: "Saldo Parcial"
-        errors:
-          models:
-            account:
-              attributes:
-                balance:
-                  insufficient: "Saldo Insuficiente"
-        notice:
-          create: "Conta criada com sucesso"
-          edit: "Conta atualizada com sucesso"
-          destroy: "Conta deletada com sucesso"
+      account: "Contas"
+      accounts: "Contas"
+    attributes:
+      name: "Nome"
+      balance: "Saldo"
+      partial_balance: "Saldo Parcial"
+    errors:
+      models:
+        account:
+          attributes:
+            balance:
+              insufficient: "Saldo Insuficiente"
+    notice:
+      create: "Conta criada com sucesso"
+      edit: "Conta atualizada com sucesso"
+      destroy: "Conta deletada com sucesso"

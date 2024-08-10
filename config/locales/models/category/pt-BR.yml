@@ -1,11 +1,12 @@
 pt-BR:
   activerecord:
     models:
-      category:
-        attributes:
-          name: "Nome"
-          name_of_category: "Nome da Categoria" 
-        notice:
-          create: "Categoria criada com sucesso"
-          edit: "Categoria atualizada com sucesso"
-          destroy: "Categoria deletada com sucesso"
+      category: "Categoria"
+      categories: "Categorias"
+    attributes:
+      name: "Nome"
+      name_of_category: "Nome da Categoria" 
+    notice:
+      create: "Categoria criada com sucesso"
+      edit: "Categoria atualizada com sucesso"
+      destroy: "Categoria deletada com sucesso"

@@ -1,12 +1,13 @@
 pt-BR:
   activerecord:
     models:
-      transaction:
-        attributes:
-          description: "Descrição"
-          amount: "Valor"
-          transaction_type: "Tipo de Transação"
-          due_date: "Data de Vecimento"
-          account: "Conta"
-          category: "Categoria"
-          status: "Status"
+      transaction: "Transação"
+      transactions: "Transações"
+    attributes:
+      description: "Descrição"
+      amount: "Valor"
+      transaction_type: "Tipo de Transação"
+      due_date: "Data de Vecimento"
+      account: "Conta"
+      category: "Categoria"
+      status: "Status"
