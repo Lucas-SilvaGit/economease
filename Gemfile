@@ -47,9 +47,6 @@ gem "bootsnap", require: false
 # I18N
 gem "rails-i18n"
 
-# JQUERY
-# gem "jquery-rails"
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
@@ -63,7 +60,7 @@ group :development, :test do
   gem "faker"
   gem "pry-rails"
   gem "shoulda-matchers"
-  gem 'database_cleaner'
+  gem "database_cleaner"
 end
 
 group :development do
@@ -77,4 +74,3 @@ group :development do
   # gem "spring"
 
 end
-
