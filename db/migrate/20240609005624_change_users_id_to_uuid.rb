@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeUsersIdToUuid < ActiveRecord::Migration[7.1]
   def up
     add_column :users, :uuid, :uuid, default: "gen_random_uuid()", null: false
