@@ -46,9 +46,9 @@ gem "bootsnap", require: false
 
 gem 'jquery-rails'
 
-gem 'aws-sdk-s3'
+gem "aws-sdk-s3"
 
-gem 'dotenv-rails'
+gem "dotenv-rails"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -59,9 +59,9 @@ group :development, :test do
   gem "rubocop-rails"
   gem "solargraph-rails"
   gem "htmlbeautifier"
-  gem 'factory_bot_rails'
-  gem 'faker'
-  gem 'pry-rails'
+  gem "factory_bot_rails"
+  gem "faker"
+  gem "pry-rails"
 end
 
 group :development do
