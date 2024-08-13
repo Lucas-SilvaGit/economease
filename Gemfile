@@ -48,6 +48,8 @@ gem 'jquery-rails'
 
 gem 'aws-sdk-s3'
 
+gem 'dotenv-rails'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
@@ -60,7 +62,6 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-rails'
-  gem 'dotenv-rails'
 end
 
 group :development do
