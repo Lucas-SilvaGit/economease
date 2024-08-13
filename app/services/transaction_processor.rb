@@ -9,7 +9,7 @@ class TransactionProcessor
         @transaction.send(save_method)
         update_balance
       else
-        @transaction.errors.add(:base, I18n.t("account.balance.insufficient"))
+        @transaction.errors.add(:base, I18n.t("activerecord.errors.balance.insufficient"))
         raise ActiveRecord::Rollback
       end
     end

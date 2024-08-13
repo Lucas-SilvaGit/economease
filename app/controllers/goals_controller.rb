@@ -24,7 +24,7 @@ class GoalsController < ApplicationController
     @goal = current_user.goals.new(goal_params)
 
     if @goal.save
-      redirect_to goals_path, notice: I18n.t("views.goal.notice.create")
+      redirect_to goals_path, notice: t("views.goal.notice.create")
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class GoalsController < ApplicationController
 
   def update
     if @goal.update(goal_params)
-      redirect_to goals_path, notice: I18n.t("views.goal.notice.edit"), status: :see_other
+      redirect_to goals_path, notice: t("views.goal.notice.edit"), status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class GoalsController < ApplicationController
 
   def destroy
     @goal.destroy!
-    redirect_to goals_url, notice: I18n.t("views.goal.notice.destroy"), status: :see_other
+    redirect_to goals_url, notice: t("views.goal.notice.destroy"), status: :see_other
   end
 
   private

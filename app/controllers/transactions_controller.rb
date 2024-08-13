@@ -20,14 +20,14 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
 
     unless valid_account?(@transaction.account)
-      @transaction.errors.add(:account, I18n.t("views.transaction.errors.invalid"))
+      @transaction.errors.add(:account, t("views.transaction.errors.invalid"))
       return render :new, status: :unprocessable_entity
     end
 
     processor = TransactionProcessor.new(@transaction)
 
     if processor.process_transaction(:save!)
-      redirect_to transactions_path, notice: I18n.t("views.transaction.notice.create")
+      redirect_to transactions_path, notice: t("views.transaction.notice.create")
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,14 +37,14 @@ class TransactionsController < ApplicationController
     @transaction.assign_attributes(transaction_params)
 
     unless valid_account?(@transaction.account)
-      @transaction.errors.add(:account, I18n.t("views.transaction.errors.invalid"))
+      @transaction.errors.add(:account, t("views.transaction.errors.invalid"))
       return render :edit, status: :unprocessable_entity
     end
 
     processor = TransactionProcessor.new(@transaction)
 
     if processor.process_transaction(:save!)
-      redirect_to transactions_path, notice: I18n.t("views.transaction.notice.edit")
+      redirect_to transactions_path, notice: t("views.transaction.notice.edit")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -55,7 +55,7 @@ class TransactionsController < ApplicationController
       @transaction.destroy!
       CalculatedBalance.new(@transaction.account).call
     end
-    redirect_to transactions_url, notice: I18n.t("views.transaction.notice.destroy")
+    redirect_to transactions_url, notice: t("views.transaction.notice.destroy")
   end
 
   private

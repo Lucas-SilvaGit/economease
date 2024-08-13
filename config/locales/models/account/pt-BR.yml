@@ -8,11 +8,8 @@ pt-BR:
       balance: "Saldo"
       partial_balance: "Saldo Parcial"
     errors:
-      models:
-        account:
-          attributes:
-            balance:
-              insufficient: "Saldo Insuficiente"
+      balance:
+        insufficient: "Saldo Insuficiente"
     notice:
       create: "Conta criada com sucesso"
       edit: "Conta atualizada com sucesso"
