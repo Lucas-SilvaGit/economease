@@ -1,6 +1,6 @@
 pt-BR:
   activerecord:
-    models:
+    model:
       account: "Contas"
       accounts: "Contas"
     attributes:
