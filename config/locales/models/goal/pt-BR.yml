@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      goal: "Meta"
+      goals: "Metas"
+    attributes:
+      name: "Nome"
+      target_amount: "Valor Desejado"
+      current_amount: "Valor Atual"
+      target_date: "Data Prevista"
+      saved_value: "Valor Salvo"

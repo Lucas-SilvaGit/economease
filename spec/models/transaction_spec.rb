@@ -1,108 +1,64 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do
-  let(:user) { create(:user) }
-  let(:account) { create(:account, user: user) }
-  let(:category) { create(:category) }
-  let(:transaction) { create(:transaction, account: account, category: category) }
-
-  describe 'validations' do
-    it 'validates presence of amount' do
-      transaction.amount = nil
-      expect(transaction).not_to be_valid
-      expect(transaction.errors[:amount]).to include("can't be blank")
-
-      transaction.amount = 1000
-      transaction.valid?
-      expect(transaction.errors[:amount]).to be_empty
-    end
-
-    it 'validates numericality of amount' do
-      transaction.amount = 'one hundred'
-      expect(transaction).not_to be_valid
-      expect(transaction.errors[:amount]).to include('is not a number')
-
-      transaction.amount = 1000
-      transaction.valid?
-      expect(transaction.errors[:amount]).to be_empty
-    end
-
-    it 'validates presence of transaction_type' do
-      transaction.transaction_type = nil
-      expect(transaction).not_to be_valid
-      expect(transaction.errors[:transaction_type]).to include("can't be blank")
-
-      transaction.transaction_type = 'expense'
-      transaction.valid?
-      expect(transaction.errors[:transaction_type]).to be_empty
-    end
-
-    it 'is valid with a pending status' do
-      transaction = Transaction.new(
-        status: 'pending',
-        amount: 100.0,
-        transaction_type: 'expense',
-        description: 'Test Description',
-        date: Date.today,
-        account: create(:account, user: create(:user)),
-        category: create(:category)
-      )
-      expect(transaction).to be_valid
-    end
-
-    it 'is valid with a completed status' do
-      transaction = Transaction.new(
-        status: 'completed',
-        amount: 100.0,
-        transaction_type: 'income',
-        description: 'Test Description',
-        date: Date.today,
-        account: create(:account, user: create(:user)),
-        category: create(:category)
-      )
-      expect(transaction).to be_valid
-    end
-
-    it 'is not valid without a status' do
-      transaction = Transaction.new(status: nil)
-      expect(transaction).not_to be_valid
-    end
+  context "validations" do
+    it { should validate_presence_of(:amount) }
+    it { should validate_presence_of(:transaction_type) }
+    it { should validate_presence_of(:description) }
   end
 
-  describe 'associations' do
-    it 'belongs to an account' do
-      expect(transaction.account).to eq(account)
-    end
-
-    it 'belongs to a category' do
-      expect(transaction.category).to eq(category)
-    end
+  context "associations" do
+    it { should belong_to(:account) }
   end
 
-  describe 'creating a transaction' do
-    context 'with valid parameters' do
-      it 'creates a new transaction successfully' do
-        transaction = build(:transaction, amount: 1000, transaction_type: 'expense', account: account, category: category)
-        expect(transaction).to be_valid
-        transaction.save
-        expect(Transaction.last).to eq(transaction)
+  context "enums" do
+    it { should define_enum_for(:transaction_type).with_values(income: "income", expense: "expense").backed_by_column_of_type(:string) }
+    it { should define_enum_for(:status).with_values(pending: "pending", completed: "completed").backed_by_column_of_type(:string) }
+  end
+
+  describe "scopes" do
+    context "when checking scope definitions" do
+      it "should have a scope named income" do
+        expect(Transaction).to respond_to(:income)
+      end
+
+      it "should have a scope named expense" do
+        expect(Transaction).to respond_to(:expense)
+      end
+
+      it "should have a scope named for_user" do
+        expect(Transaction).to respond_to(:for_user)
       end
     end
 
-    context 'with invalid parameters' do
-      it 'does not create a transaction without an amount' do
-        transaction.amount = nil
-        expect(transaction).not_to be_valid
-      end
+    context "when using the income scope" do
+      it "returns only income transactions" do
+        income_transaction = create(:transaction, transaction_type: "income")
+        expense_transaction = create(:transaction, transaction_type: "expense")
 
-      it 'does not create a transaction with a non-numeric amount' do
-        transaction.amount = 'one hundred'
-        expect(transaction).not_to be_valid
+        expect(Transaction.income).not_to include(expense_transaction)
       end
+    end
 
-      it 'does not create a transaction without a transaction_type' do
-        transaction.transaction_type = nil
-        expect(transaction).not_to be_valid
+    context "when using the expense scope" do
+      it "returns only expense transactions" do
+        income_transaction = create(:transaction, transaction_type: "income")
+        expense_transaction = create(:transaction, transaction_type: "expense")
+
+        expect(Transaction.expense).not_to include(income_transaction)
+      end
+    end
+
+    context "when using the for_user scope" do
+      let(:user_account) { create(:account) }
+      let!(:transactions) { create_list(:transaction, 3, account: user_account) }
+      let!(:other_transactions) { create_list(:transaction, 3) }
+
+      it "returns transactions for the specified user" do
+        expect(Transaction.count).to eq(6)
+        expect(Transaction.for_user(user_account.user)).to eq(transactions)
       end
     end
   end

@@ -1,0 +1,14 @@
+pt-BR:
+  views:
+    category:
+      actions:
+        create: "Criar categoria"
+        creating: "Criando categoria"
+        edit: "Editando categoria"
+        new: "Nova categoria"
+        show: "Ver categoria"
+        destroy: "Deletar categoria"
+      notice:
+        create: "Categoria criada com sucesso"
+        edit: "Categoria atualizada com sucesso"
+        destroy: "Categoria deletada com sucesso"

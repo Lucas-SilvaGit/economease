@@ -1,0 +1,17 @@
+pt-BR:
+  views:
+      goal:
+        actions:
+          create: "Criar meta"
+          edit: "Editando meta"
+          new: "Nova meta"
+          show: "Ver meta"
+          destroy: "Deletar meta"
+          details: "Ver Detalhes da meta"
+        notice:
+          create: "Meta criada com sucesso"
+          edit: "Meta atualizada com sucesso"
+          destroy: "Meta deletada com sucesso"
+        messages:
+          title: "Gerencie todas as suas Metas em um só lugar"
+          paragraph: "Aqui você pode visualizar e gerenciar todas as suas Metas. Clique em uma meta para ver mais detalhes."
