@@ -46,8 +46,10 @@ gem "bootsnap", require: false
 
 gem 'jquery-rails'
 
+# AWS SDK for S3. Provides support for Amazon S3.
 gem "aws-sdk-s3"
 
+# Dotenv for Rails. Loads environment variables from .env into ENV in Rails.
 gem "dotenv-rails"
 
 group :development, :test do
