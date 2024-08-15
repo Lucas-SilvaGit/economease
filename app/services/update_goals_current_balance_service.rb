@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateGoalsCurrentBalanceService
   def initialize(user)
     @user = user

@@ -1,53 +1,45 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Account, type: :model do
-  let(:user) { create(:user) }
-  let(:account) { create(:account, user: user) }
+  context "validations" do
+    let(:user) { create(:user) }
 
-  describe 'validations' do
-    it 'validates presence of name' do
-      account.name = nil
-      expect(account).not_to be_valid
-      expect(account.errors[:name]).to include("can't be blank")
+    it { should validate_presence_of(:name) }
+    it { should validate_uniqueness_of(:name).scoped_to(:user_id).with_message("já está em uso") }
+    it { should validate_numericality_of(:balance).is_greater_than_or_equal_to(0) }
 
-      account.name = 'Savings'
-      account.valid?
-      expect(account.errors[:name]).to be_empty
-    end
-
-  end
-
-  describe 'associations' do
-    it 'belongs to a user' do
-      expect(account.user).to eq(user)
+    before do
+      create(:account, user: user, name: "Test Account")
     end
   end
 
-  describe 'creating an account' do
-    context 'with valid parameters' do
-      it 'creates a new account successfully' do
-        account = build(:account, name: 'Savings', balance: 1000, user: user)
-        expect(account).to be_valid
-        account.save
-        expect(Account.last).to eq(account)
-      end
+  context "associations" do
+    it { should belong_to(:user) }
+    it { should have_many(:transactions).dependent(:destroy) }
+  end
+
+  context "callbacks" do
+    it "should set balance to 0 when creating a new account" do
+      account = create(:account, balance: nil)
+
+      expect(account.balance).to eq(0)
+    end
+  end
+
+  describe "partial_balance" do
+    let(:account) { create(:account) }
+    let(:transaction1) { create(:transaction, account: account, amount: 1000, transaction_type: "income") }
+    let(:transaction2) { create(:transaction, account: account, amount: 300, transaction_type: "expense") }
+
+    before do
+      transaction1
+      transaction2
     end
 
-    context 'with invalid parameters' do
-      it 'does not create an account without a name' do
-        account.name = nil
-        expect(account).not_to be_valid
-      end
+    it "calculates the partial balance correctly" do
+      partial_balance = account.partial_balance
 
-      it 'does not create an account with a negative balance' do
-        account.balance = -100
-        expect(account).not_to be_valid
-      end
-
-      it 'does not create an account with a non-numeric balance' do
-        account.balance = 'one hundred'
-        expect(account).not_to be_valid
-      end
+      expect(partial_balance).to eq(700)
     end
   end
 end

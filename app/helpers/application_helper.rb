@@ -12,4 +12,8 @@ module ApplicationHelper
   def form_button_class
     "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
   end
+
+  def format_currency(amount)
+    number_to_currency(amount, unit: "R$", format: "%u %n", separator: ",", delimiter: ".")
+  end
 end

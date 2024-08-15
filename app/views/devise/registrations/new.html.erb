@@ -1,46 +1,56 @@
 <% content_for(:auth_header) do %>
-  <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Create your account</h2>
+  <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= t("devise.registrations.new.create_account") %></h2>
   <p class="mt-2 text-center text-sm text-gray-600">
-    Have an account already? 
-    <%= link_to "Log in", new_session_path(resource_name), class:"font-medium text-indigo-600 hover:text-indigo-500" %>
+    <%= t("devise.registrations.new.have_account") %>
+    <%= link_to t("devise.registrations.new.log_in"), new_session_path(resource_name), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
   </p>
 <% end %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: {turbo: false}) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <div class="mb-3">
-    <%= f.label :first_name, class: label_class %>
+    <%= f.label :first_name, class: label_class do %>
+      <%= t("activerecord.attributes.user.first_name") %>
+    <% end %>
     <div class="mt-1">
       <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: input_class %>
     </div>
   </div>
   <div class="mb-3">
-    <%= f.label :last_name, class: label_class %>
+    <%= f.label :last_name, class: label_class do %>
+      <%= t("activerecord.attributes.user.last_name") %>
+    <% end %>
     <div class="mt-1">
       <%= f.text_field :last_name, autocomplete: "last_name", class: input_class %>
     </div>
   </div>
   <div class="mb-3">
-    <%= f.label :email, class: label_class %>
+    <%= f.label :email, class: label_class do %>
+      <%= t("activerecord.attributes.user.email") %>
+    <% end %>
     <div class="mt-1">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: input_class %>
     </div>
   </div>
   <div class="mb-3">
-    <%= f.label :password, class: label_class %>
+    <%= f.label :password, class: label_class do %>
+      <%= t("activerecord.attributes.user.password") %>
+    <% end %>
     <div class="mt-1">
       <%= f.password_field :password, autocomplete: "new-password", class: input_class %>
     </div>
     <% if @minimum_password_length %>
-      <em class="mt-1 text-sm text-gray-500">(<%= @minimum_password_length %> characters minimum)</em>
+      <em class="mt-1 text-sm text-gray-500"><%= t("devise.registrations.new.minimum_password_length", count: @minimum_password_length) %></em>
     <% end %>
   </div>
   <div class="mb-3">
-    <%= f.label :password_confirmation, class: label_class %>
+    <%= f.label :password_confirmation, class: label_class do %>
+      <%= t("activerecord.attributes.user.password_confirmation") %>
+    <% end %>
     <div class="mt-1">
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: input_class %>
     </div>
   </div>
   <div class="actions mt-6">
-    <%= f.submit "Sign up", class: form_button_class %>
+    <%= f.submit t("devise.registrations.new.sign_up"), class: form_button_class %>
   </div>
 <% end %>
