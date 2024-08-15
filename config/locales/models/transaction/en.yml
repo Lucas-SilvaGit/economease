@@ -1,0 +1,24 @@
+en:
+  activerecord:
+    models:
+      transaction:
+        actions:
+          create: "Create transaction"
+          edit: "Editing transaction"
+          new: "New transaction"
+          show: "View transaction"
+          destroy: "Delete transaction"
+        notice:
+          create: "Transaction created successfully"
+          edit: "Transaction updated successfully"
+          destroy: "Transaction deleted successfully"
+        errors:
+          invalid: "is invalid"
+        fields:
+          description: "Description"
+          amount: "Amount"
+          transaction_type: "Transaction Type"
+          due_date: "Due Date"
+          account: "Account"
+          category: "Category"
+          status: "Status"

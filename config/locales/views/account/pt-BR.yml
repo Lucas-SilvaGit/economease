@@ -1,0 +1,17 @@
+pt-BR:
+  views:
+    account:
+      actions:
+        create: "Criar conta"
+        edit: "Editando conta"
+        new: "Nova conta"
+        show: "Ver conta"
+        destroy: "Deletar conta"
+        editing: "Editar esta conta"
+      notice:
+        create: "Conta criada com sucesso"
+        edit: "Conta atualizada com sucesso"
+        destroy: "Conta deletada com sucesso"
+      messages:
+        title: "Gerencie todas as suas contas em um só lugar"
+        paragraph: "Aqui você pode visualizar e gerenciar todas as suas contas. Clique em uma conta para ver mais detalhes ou para editá-la."

@@ -1,0 +1,19 @@
+en:
+  activerecord:
+    models:
+      category:
+        actions:
+          create: "Create category"
+          edit: "Editing category"
+          new: "New category"
+          show: "View category"
+          destroy: "Delete category"
+        notice:
+          create: "Category created successfully"
+          edit: "Category updated successfully"
+          destroy: "Category deleted successfully"
+        link_to:
+          back_to_categories: "Back to categories"
+        fields:
+          name: "Name"
+          name_of_category: "Name of Category"

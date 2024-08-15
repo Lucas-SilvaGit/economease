@@ -1,0 +1,24 @@
+en:
+  activerecord:
+    models:
+      account:
+        actions:
+          create: "Create account"
+          edit: "Editing account"
+          new: "New account"
+          show: "View account"
+          destroy: "Delete account"
+          editing: "Edit this account"
+        notice:
+          create: "Account created successfully"
+          edit: "Account updated successfully"
+          destroy: "Account deleted successfully"
+        balance:
+          insufficient: "Insufficient balance"
+        messages:
+          message1: "Manage all your accounts in one place"
+          message2: "Here you can view and manage all your accounts. Click on an account to see more details or to edit it."
+        fields:
+          name: "Name"
+          balance: "Balance"
+          partial_balance: "Partial Balance"

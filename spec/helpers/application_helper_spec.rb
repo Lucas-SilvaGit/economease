@@ -1,6 +1,6 @@
-# spec/helpers/application_helper_spec.rb
+# frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ApplicationHelper, type: :helper do
   describe "format_currency" do
