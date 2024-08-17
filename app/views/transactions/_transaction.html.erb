@@ -59,7 +59,7 @@
           <%= I18n.t("activerecord.attributes.voucher") %>
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          <%= link_to image_tag(transaction.voucher), transaction.voucher if transaction.voucher.attached? %>
+          <%= link_to image_tag(transaction.voucher, class: "max-w-xs max-h-48"), transaction.voucher if transaction.voucher.attached? %>
         </dd>
       </div>
     </dl>
