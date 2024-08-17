@@ -11,3 +11,10 @@ pt-BR:
       account: "Conta"
       category: "Categoria"
       status: "Status"
+      voucher: "Comprovante"
+      transaction_types:
+        income: "Receita"
+        expense: "Despesa"
+      statuses:
+          pending: "Pendente"
+          completed: "Concluída"

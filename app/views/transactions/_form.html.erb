@@ -20,7 +20,7 @@
     </div>
     <div>
       <%= form.label :transaction_type, I18n.t("activerecord.attributes.transaction_type"), class: "block text-sm font-medium text-gray-700" %>
-      <%= form.select :transaction_type, Transaction.transaction_types.keys.map { |type| [type.humanize, type] }, {include_blank: "Selecione..."}, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
+      <%= form.select :transaction_type, Transaction.transaction_types.keys.map { |type| [I18n.t("activerecord.attributes.transaction_types.#{type}"), type] }, {include_blank: "Selecione..."}, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
     </div>
     <div>
       <%= form.label :due_date, I18n.t("activerecord.attributes.due_date"), class: "block text-sm font-medium text-gray-700" %>
@@ -36,7 +36,7 @@
     </div>
     <div>
       <%= form.label :status, I18n.t("activerecord.attributes.status"), class: "block text-sm font-medium text-gray-700" %>
-      <%= form.select :status, Transaction.statuses.keys.map { |status| [status.humanize, status] }, { include_blank: "Selecione..." }, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
+      <%= form.select :status, Transaction.statuses.keys.map { |status| [I18n.t("activerecord.attributes.statuses.#{status}"), status] }, { include_blank: "Selecione..." }, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
     </div>
   </div>
   <div class="mt-6 flex justify-end">
