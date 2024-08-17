@@ -1,26 +1,67 @@
-<div id="<%= dom_id transaction %>">
-  <p>
-    <strong>Amount:</strong>
-    <%= transaction.amount %>
-  </p>
-  <p>
-    <strong>Transaction type:</strong>
-    <%= transaction.transaction_type %>
-  </p>
-  <p>
-    <strong>Description:</strong>
-    <%= transaction.description %>
-  </p>
-  <p>
-    <strong>Due Date:</strong>
-    <%= transaction.due_date %>
-  </p>
-  <p>
-    <strong>Account:</strong>
-    <%= transaction.account_id %>
-  </p>
-  <p>
-    <strong>Category:</strong>
-    <%= transaction.category_id %>
-  </p>
+<div id="<%= dom_id transaction %>" class="bg-white shadow overflow-hidden sm:rounded-lg">
+  <div class="px-4 py-5 sm:px-6">
+    <h3 class="text-lg leading-6 font-medium text-gray-900">
+      <%= I18n.t("views.transaction.actions.details")%> - <%= transaction.description%>
+    </h3>
+  </div>
+  <div class="border-t border-gray-200">
+    <dl>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          <%= I18n.t("activerecord.attributes.amount") %>
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= transaction.amount %>
+        </dd>
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          <%= I18n.t("activerecord.attributes.transaction_type") %>
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= transaction.transaction_type %>
+        </dd>
+      </div>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          <%= I18n.t("activerecord.attributes.description") %>
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= transaction.description %>
+        </dd>
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          <%= I18n.t("activerecord.attributes.due_date") %>
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= transaction.due_date.strftime("%d/%m/%Y") %>
+        </dd>
+      </div>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          <%= I18n.t("activerecord.attributes.account") %>
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= transaction.account.name %>
+        </dd>
+      </div>
+      <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          <%= I18n.t("activerecord.attributes.category") %>
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= transaction.category.name %>
+        </dd>
+      </div>
+      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-500">
+          <%= I18n.t("activerecord.attributes.voucher") %>
+        </dt>
+        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+          <%= link_to image_tag(transaction.voucher), transaction.voucher if transaction.voucher.attached? %>
+        </dd>
+      </div>
+    </dl>
+  </div>
 </div>
