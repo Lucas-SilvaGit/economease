@@ -3,9 +3,10 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_transaction, only: %i[show edit update destroy]
+  before_action :set_query, only: :index
 
   def index
-    @transactions = Transaction.for_user(current_user)
+    @transactions = @query.for_user(current_user)
   end
 
   def show; end
@@ -73,5 +74,19 @@ class TransactionsController < ApplicationController
 
   def valid_account?(account)
     account && account.user_id == current_user.id
+  end
+
+  def set_query
+    @query = Transaction.all
+    @query = @query.filter_by_description(params[:description]) if params[:description].present?
+    @query = @query.filter_by_transaction_type(params[:transaction_type]) if params[:transaction_type].present?
+    if params[:due_date_start].present? && params[:due_date_end].present?
+      start_date = DateTime.parse(params[:due_date_start])
+      end_date = DateTime.parse(params[:due_date_end])
+      @query = @query.filter_by_due_date_range(start_date, end_date)
+    end
+    @query = @query.filter_by_account_id(params[:account_id]) if params[:account_id].present?
+    @query = @query.filter_by_category_id(params[:category_id]) if params[:category_id].present?
+    @query = @query.filter_by_status(params[:status]) if params[:status].present?
   end
 end

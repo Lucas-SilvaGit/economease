@@ -2,6 +2,7 @@
 <div class="flex justify-end mb-4">
   <%= link_to I18n.t("views.transaction.actions.new"), new_transaction_path, class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
 </div>
+<%= render 'filters' %>
 <div class="overflow-x-auto relative shadow-lg sm:rounded-lg">
   <table class="w-full text-sm text-left text-gray-500">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
