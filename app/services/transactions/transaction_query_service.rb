@@ -25,8 +25,8 @@ module Transactions
         end_date = DateTime.parse(@params[:due_date_end])
         query = query.filter_by_due_date_range(start_date, end_date)
       else
-        start_date = Date.today - 30.days
-        end_date = Date.today
+        start_date = Time.zone.today - 30.days
+        end_date = Time.zone.today
         query = query.where(due_date: start_date..end_date)
       end
       query
