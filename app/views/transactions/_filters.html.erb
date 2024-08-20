@@ -26,10 +26,10 @@
                 <%= select_tag :transaction_type, options_for_select(Transaction.transaction_types.keys.map { |type| [I18n.t("activerecord.attributes.transaction_types.#{type}"), type] }, params[:transaction_type]), include_blank: "Selecione...", class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
-                <%= date_field_tag :due_date_start, params[:due_date_start] || Date.today.strftime("%Y-%m-%d"), class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                <%= date_field_tag :due_date_start, params[:due_date_start] || Time.zone.today.beginning_of_month.strftime("%Y-%m-%d"), class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
-                <%= date_field_tag :due_date_end, params[:due_date_end] || Date.today.strftime("%Y-%m-%d"), class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                <%= date_field_tag :due_date_end, params[:due_date_end] || Time.zone.today.strftime("%Y-%m-%d"), class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
                 <%= select_tag :account_id, options_for_select(Account.where(user_id: current_user.id).pluck(:name, :id), params[:account_id]), include_blank: "Selecione...", class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
