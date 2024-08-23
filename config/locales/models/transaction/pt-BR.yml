@@ -1,13 +1,16 @@
 pt-BR:
+  attributes:
+      description: "Descrição"
+      amount: "Valor"
+      transaction_type: "Tipo de Transação"
+      due_date: "Data de Vecimento"
+      status: "Status"
+      voucher: "Comprovante"
   activerecord:
     models:
       transaction: "Transação"
       transactions: "Transações"
     attributes:
-      description: "Descrição"
-      amount: "Valor"
-      transaction_type: "Tipo de Transação"
-      due_date: "Data de Vecimento"
       account: "Conta"
       category: "Categoria"
       status: "Status"

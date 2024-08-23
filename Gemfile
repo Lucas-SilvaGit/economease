@@ -44,8 +44,11 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-# I18N
-gem "rails-i18n"
+# AWS SDK for S3. Provides support for Amazon S3.
+gem "aws-sdk-s3"
+
+# Dotenv for Rails. Loads environment variables from .env into ENV in Rails.
+gem "dotenv-rails"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
