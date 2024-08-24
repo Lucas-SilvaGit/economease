@@ -8,7 +8,7 @@
     <dl>
       <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          <%= I18n.t("activerecord.attributes.amount") %>
+          <%= I18n.t("attributes.amount") %>
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <%= transaction.amount %>
@@ -16,7 +16,7 @@
       </div>
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          <%= I18n.t("activerecord.attributes.transaction_type") %>
+          <%= I18n.t("attributes.transaction_type") %>
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <%= transaction.transaction_type %>
@@ -24,7 +24,7 @@
       </div>
       <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          <%= I18n.t("activerecord.attributes.description") %>
+          <%= I18n.t("attributes.description") %>
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <%= transaction.description %>
@@ -32,7 +32,7 @@
       </div>
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          <%= I18n.t("activerecord.attributes.due_date") %>
+          <%= I18n.t("attributes.due_date") %>
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <%= transaction.due_date.strftime("%d/%m/%Y") %>
@@ -40,7 +40,7 @@
       </div>
       <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          <%= I18n.t("activerecord.attributes.account") %>
+          <%= I18n.t("attributes.account_id") %>
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <%= transaction.account.name %>
@@ -48,7 +48,7 @@
       </div>
       <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          <%= I18n.t("activerecord.attributes.category") %>
+          <%= I18n.t("attributes.category_id") %>
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <%= transaction.category.name %>
@@ -56,7 +56,7 @@
       </div>
       <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
         <dt class="text-sm font-medium text-gray-500">
-          <%= I18n.t("activerecord.attributes.voucher") %>
+          <%= I18n.t("attributes.voucher") %>
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           <%= link_to image_tag(transaction.voucher, class: "max-w-xs max-h-48"), transaction.voucher if transaction.voucher.attached? %>

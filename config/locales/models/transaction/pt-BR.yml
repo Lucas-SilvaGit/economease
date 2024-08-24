@@ -6,6 +6,14 @@ pt-BR:
       due_date: "Data de Vecimento"
       status: "Status"
       voucher: "Comprovante"
+      account_id: "Conta"
+      category_id: "Categoria"
+      transaction_types:
+        income: "Receita"
+        expense: "Despesa"
+      statuses:
+        pending: "Pendente"
+        completed: "Concluída"
   activerecord:
     models:
       transaction: "Transação"
