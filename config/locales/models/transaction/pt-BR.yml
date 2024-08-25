@@ -21,3 +21,10 @@ pt-BR:
     attributes:
       account: "Conta"
       category: "Categoria"
+      status: "Status"
+      transaction_types:
+        income: "Receita"
+        expense: "Despesa"
+      statuses:
+          pending: "Pendente"
+          completed: "Concluída"

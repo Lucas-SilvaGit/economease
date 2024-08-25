@@ -21,11 +21,11 @@
         <tr class="<%= index.odd? ? 'bg-gray-50' : 'bg-white' %> hover:bg-gray-100">
           <td class="py-3 px-6 text-center align-middle"><%= transaction.description %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.amount %></td>
-          <td class="py-3 px-6 text-center align-middle"><%= transaction.transaction_type %></td>
+          <td class="py-3 px-6 text-center align-middle"><%= t("activerecord.attributes.transaction_types.#{transaction.transaction_type}") %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.due_date.strftime('%d/%m/%Y') %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.account.name %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.category.name %></td>
-          <td class="py-3 px-6 text-center align-middle"><%= transaction.status %></td>
+          <td class="py-3 px-6 text-center align-middle"><%= t("activerecord.attributes.statuses.#{transaction.status}") %></td>
           <td class="py-4 px-6 text-center align-middle">
             <div class="flex justify-center space-x-4">
               <%= link_to I18n.t("actions.show"), transaction_path(transaction), class: "text-green-600 hover:text-green-700" %>
