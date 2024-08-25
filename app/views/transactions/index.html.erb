@@ -7,14 +7,14 @@
   <table class="w-full text-sm text-left text-gray-500">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
       <tr>
-        <th scope="col" class="py-3 px-6 text-center"><%= I18n.t("activerecord.attributes.description") %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= I18n.t("activerecord.attributes.amount") %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= I18n.t("activerecord.attributes.transaction_type") %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= I18n.t("activerecord.attributes.due_date") %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= I18n.t("activerecord.attributes.account") %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= I18n.t("activerecord.attributes.category") %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= I18n.t("activerecord.attributes.status") %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= I18n.t("helpers.table.actions") %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= t("attributes.description") %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= t("attributes.amount") %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= t("attributes.transaction_type") %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= t("attributes.due_date") %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= t("attributes.account_id") %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= t("attributes.category_id") %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= t("attributes.status") %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= t("helpers.table.actions") %></th>
       </tr>
     </thead>
     <tbody class="bg-white">
@@ -22,13 +22,14 @@
         <tr class="<%= index.odd? ? 'bg-gray-50' : 'bg-white' %> hover:bg-gray-100">
           <td class="py-3 px-6 text-center align-middle"><%= transaction.description %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.amount %></td>
-          <td class="py-3 px-6 text-center align-middle"><%= transaction.transaction_type %></td>
+          <td class="py-3 px-6 text-center align-middle"><%= t("activerecord.attributes.transaction_types.#{transaction.transaction_type}") %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.due_date.strftime('%d/%m/%Y') %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.account.name %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.category.name %></td>
-          <td class="py-3 px-6 text-center align-middle"><%= transaction.status %></td>
+          <td class="py-3 px-6 text-center align-middle"><%= t("activerecord.attributes.statuses.#{transaction.status}") %></td>
           <td class="py-4 px-6 text-center align-middle">
             <div class="flex justify-center space-x-4">
+              <%= link_to I18n.t("actions.show"), transaction_path(transaction), class: "text-green-600 hover:text-green-700" %>
               <%= link_to I18n.t("actions.edit"), edit_transaction_path(transaction), class: "text-blue-600 hover:text-blue-700" %>
               <%= button_to I18n.t("actions.destroy"), transaction_path(transaction), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-600 hover:text-red-700" %>
             </div>
