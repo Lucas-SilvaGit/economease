@@ -6,6 +6,8 @@ class Transaction < ApplicationRecord
   belongs_to :account
   belongs_to :category
 
+  has_one_attached :voucher
+
   validates :transaction_type, :description, :due_date, :status, presence: true
   validates :amount, numericality: { greater_than: 0 }, presence: true
 

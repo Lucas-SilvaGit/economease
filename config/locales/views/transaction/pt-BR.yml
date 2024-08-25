@@ -7,6 +7,7 @@ pt-BR:
         new: "Nova transação"
         show: "Ver transação"
         destroy: "Deletar transação"
+        details: "Detalhes da Transação"
       notice:
         create: "Transação criada com sucesso"
         edit: "Transação atualizada com sucesso"

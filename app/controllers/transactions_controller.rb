@@ -67,7 +67,8 @@ class TransactionsController < ApplicationController
   def transaction_params
     params.require(:transaction).permit(
       :amount, :transaction_type, :description,
-      :due_date, :status, :account_id, :category_id
+      :due_date, :status, :account_id, :category_id,
+      :voucher
     )
   end
 
