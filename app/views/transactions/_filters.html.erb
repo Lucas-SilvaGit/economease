@@ -8,13 +8,13 @@
         <table class="w-full">
           <thead>
             <tr>
-              <th class="text-left text-sm font-medium text-gray-700"><%= I18n.t("activerecord.attributes.description") %></th>
-              <th class="text-left text-sm font-medium text-gray-700"><%= I18n.t("activerecord.attributes.transaction_type") %></th>
+              <th class="text-left text-sm font-medium text-gray-700"><%= t("attributes.description") %></th>
+              <th class="text-left text-sm font-medium text-gray-700"><%= t("attributes.transaction_type") %></th>
               <th class="text-left text-sm font-medium text-gray-700">Data Venc. Inicial</th>
               <th class="text-left text-sm font-medium text-gray-700">Data Venc. Final</th>
-              <th class="text-left text-sm font-medium text-gray-700"><%= I18n.t("activerecord.attributes.account") %></th>
-              <th class="text-left text-sm font-medium text-gray-700"><%= I18n.t("activerecord.attributes.category") %></th>
-              <th class="text-left text-sm font-medium text-gray-700"><%= I18n.t("activerecord.attributes.status") %></th>
+              <th class="text-left text-sm font-medium text-gray-700"><%= t("attributes.account_id") %></th>
+              <th class="text-left text-sm font-medium text-gray-700"><%= t("attributes.category_id") %></th>
+              <th class="text-left text-sm font-medium text-gray-700"><%= t("attributes.status") %></th>
             </tr>
           </thead>
           <tbody>
@@ -23,7 +23,7 @@
                 <%= text_field_tag :description, params[:description], class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
-                <%= select_tag :transaction_type, options_for_select(Transaction.transaction_types.keys.map { |type| [I18n.t("activerecord.attributes.transaction_types.#{type}"), type] }, params[:transaction_type]), include_blank: "Selecione...", class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                <%= select_tag :transaction_type, options_for_select(Transaction.transaction_types.keys.map { |type| [t("attributes.transaction_types.#{type}"), type] }, params[:transaction_type]), include_blank: "Selecione...", class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
                 <%= date_field_tag :due_date_start, params[:due_date_start] || Time.zone.today.beginning_of_month.strftime("%Y-%m-%d"), class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
@@ -38,14 +38,14 @@
                 <%= select_tag :category_id, options_for_select(Category.pluck(:name, :id), params[:category_id]), include_blank: "Selecione...", class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
-                <%= select_tag :status, options_for_select(Transaction.statuses.keys.map { |status| [I18n.t("activerecord.attributes.statuses.#{status}"), status] }, params[:status]), include_blank: "Selecione...", class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                <%= select_tag :status, options_for_select(Transaction.statuses.keys.map { |status| [t("attributes.statuses.#{status}"), status] }, params[:status]), include_blank: "Selecione...", class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
             </tr>
           </tbody>
         </table>
         <div class="flex justify-start mt-4 space-x-4">
-          <%= submit_tag I18n.t("views.transaction.actions.filter"), class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
-          <%= link_to I18n.t("views.transaction.actions.clear"), transactions_path, class: "inline-flex items-center justify-center rounded-md border border-gray-300 bg-gray-100 px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2" %>
+          <%= submit_tag t("views.transaction.actions.filter"), class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+          <%= link_to t("views.transaction.actions.clear"), transactions_path, class: "inline-flex items-center justify-center rounded-md border border-gray-300 bg-gray-100 px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2" %>
         </div>
       <% end %>
     </div>
