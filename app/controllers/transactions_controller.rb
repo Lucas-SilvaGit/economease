@@ -6,7 +6,7 @@ class TransactionsController < ApplicationController
   before_action :set_query, only: :index
 
   def index
-    @transactions = @query.for_user(current_user)
+    @transactions = @query.for_user(current_user).order(due_date: :desc)
   end
 
   def show; end

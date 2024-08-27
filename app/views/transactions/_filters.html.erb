@@ -9,9 +9,23 @@
           <thead>
             <tr>
               <th class="text-left text-sm font-medium text-gray-700"><%= t("attributes.description") %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <%= text_field_tag :description, params[:description], class: "mt-1 block w-full sm:w-1/2 lg:w-1/4 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="w-full mt-4">
+          <thead>
+            <tr>
               <th class="text-left text-sm font-medium text-gray-700"><%= t("attributes.transaction_type") %></th>
               <th class="text-left text-sm font-medium text-gray-700">Data Venc. Inicial</th>
               <th class="text-left text-sm font-medium text-gray-700">Data Venc. Final</th>
+              <th class="text-left text-sm font-medium text-gray-700">Período</th>
               <th class="text-left text-sm font-medium text-gray-700"><%= t("attributes.account_id") %></th>
               <th class="text-left text-sm font-medium text-gray-700"><%= t("attributes.category_id") %></th>
               <th class="text-left text-sm font-medium text-gray-700"><%= t("attributes.status") %></th>
@@ -20,9 +34,6 @@
           <tbody>
             <tr>
               <td>
-                <%= text_field_tag :description, params[:description], class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
-              </td>
-              <td>
                 <%= select_tag :transaction_type, options_for_select(Transaction.transaction_types.keys.map { |type| [t("attributes.transaction_types.#{type}"), type] }, params[:transaction_type]), include_blank: "Selecione...", class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
@@ -30,6 +41,22 @@
               </td>
               <td>
                 <%= date_field_tag :due_date_end, params[:due_date_end] || Time.zone.today.strftime("%Y-%m-%d"), class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </td>
+              <td>
+                <%= select_tag :predefined_period, options_for_select([
+                  ["Selecione...", ""],
+                  ["Hoje", "today"],
+                  ["Ontem", "yesterday"],
+                  ["Esta semana", "this_week"],
+                  ["Semana passada", "last_week"],
+                  ["Últimos 7 dias", "last_7_days"],
+                  ["Mês atual", "current_month"],
+                  ["Últimos 30 dias", "last_30_days"],
+                  ["Últimos 3 meses", "last_3_months"],
+                  ["Últimos 6 meses", "last_6_months"],
+                  ["Mês passado", "last_month"],
+                  ["Ano atual", "current_year"]
+                ]), class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
                 <%= select_tag :account_id, options_for_select(Account.where(user_id: current_user.id).pluck(:name, :id), params[:account_id]), include_blank: "Selecione...", class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
