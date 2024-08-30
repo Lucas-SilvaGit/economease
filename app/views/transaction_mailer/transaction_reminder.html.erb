@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Lembrete de Despesa Pendente</title>
+  </head>
+  <body>
+    <h1>Lembrete de Despesa Pendente</h1>
+    <p>Olá, <%= @user.first_name %>!</p>
+    <p>Esta é uma lembrança de que você tem uma Despesa pendente com vencimento em <%= @transaction.due_date.strftime("%d/%m/%Y") %>.</p>
+    <p>Detalhes da Despesa:</p>
+    <ul>
+      <li>Valor: <%= number_to_currency(@transaction.amount) %></li>
+      <li>Data de Vencimento: <%= @transaction.due_date.strftime("%d/%m/%Y") %></li>
+    </ul>
+    <p>Por favor, efetue o pagamento o mais rápido possível.</p>
+    <p>Obrigado!</p>
+  </body>
+</html>
