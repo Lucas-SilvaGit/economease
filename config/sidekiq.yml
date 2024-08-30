@@ -2,3 +2,9 @@
 :queues:
   - default
   - mailers
+:scheduler:
+  :enabled: true
+  :schedule:
+    transaction_reminder:
+      cron: "03 23 * * *"
+      class: "TransactionReminderJob"
