@@ -8,6 +8,9 @@ pt-BR:
         show: "Ver transação"
         destroy: "Deletar transação"
         details: "Detalhes da Transação"
+        filter: "Filtrar"
+        clear: "Limpar"
+        show_filters: "Exibir Filtros"
       notice:
         create: "Transação criada com sucesso"
         edit: "Transação atualizada com sucesso"
