@@ -5,7 +5,10 @@ class TransactionsController < ApplicationController
   before_action :set_transaction, only: %i[show edit update destroy]
 
   def index
-    @transactions = Transaction.for_user(current_user)
+    @q = Transaction.ransack(params[:q])
+    @transactions = @q.result(distinct: true).for_user(current_user)
+    @accounts = current_user.accounts
+    @categories = Category.joins(:transactions).where(transactions: { account_id: current_user.accounts.ids }).distinct
   end
 
   def show; end
