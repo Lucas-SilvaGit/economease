@@ -11,7 +11,12 @@ class TransactionsController < ApplicationController
   def show; end
 
   def new
-    @transaction = Transaction.new(account_id: params[:account_id], transaction_type: params[:transaction_type])
+    @transaction = Transaction.new(transaction_type: params[:transaction_type])
+    @transaction.account = current_user.accounts.find_by(id: params[:account_id])
+
+    return unless @transaction.account.nil?
+
+    redirect_to transactions_path, alert: t("views.transaction.errors.invalid_account")
   end
 
   def edit; end
