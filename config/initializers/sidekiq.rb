@@ -10,4 +10,8 @@ Sidekiq.configure_server do |config|
       Sidekiq::Scheduler.reload_schedule!
     end
   end
+
+  log_file = File.open(Rails.root.join('log', 'sidekiq.log'), 'a')
+  log_file.sync = true
+  config.logger = Logger.new(log_file)
 end
