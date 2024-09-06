@@ -3,10 +3,12 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_transaction, only: %i[show edit update destroy]
-  before_action :set_query, only: :index
 
   def index
-    @transactions = @query.for_user(current_user)
+    @q = Transaction.ransack(params[:q])
+    @transactions = @q.result(distinct: true).for_user(current_user)
+    @accounts = current_user.accounts
+    @categories = Category.joins(:transactions).where(transactions: { account_id: current_user.accounts.ids }).distinct
   end
 
   def show; end
@@ -75,9 +77,5 @@ class TransactionsController < ApplicationController
 
   def valid_account?(account)
     account && account.user_id == current_user.id
-  end
-
-  def set_query
-    @query = Transactions::TransactionQueryService.new(params).call
   end
 end
