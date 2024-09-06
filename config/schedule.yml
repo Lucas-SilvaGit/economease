@@ -1,0 +1,4 @@
+transaction_reminder_job:
+  cron: "01 02 * * *"
+  class: "TransactionReminderJob"
+  

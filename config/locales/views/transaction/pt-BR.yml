@@ -14,3 +14,7 @@ pt-BR:
         destroy: "Transação deletada com sucesso"
       errors:
         invalid: "é inválida"
+    mailers:
+      transaction_mailer:
+        transaction_reminder:
+          subject: "Lembrete de Despesa Pendente"

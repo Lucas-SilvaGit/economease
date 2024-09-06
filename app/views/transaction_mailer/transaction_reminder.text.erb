@@ -1,0 +1,8 @@
+Lembrete de Despesa Pendente
+Olá, <%= @user.first_name %>!
+Esta é uma lembrança de que você tem uma Despesa pendente com vencimento em <%= @transaction.due_date.strftime("%d/%m/%Y") %>.
+Detalhes da Despesa:
+- Valor: <%= number_to_currency(@transaction.amount) %>
+- Data de Vencimento: <%= @transaction.due_date.strftime("%d/%m/%Y") %>
+Por favor, efetue o pagamento o mais rápido possível.
+Obrigado!

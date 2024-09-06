@@ -52,6 +52,9 @@ module Economease
       g.orm :active_record, primary_key_type: :uuid
     end
 
+    # Config Sidekiq
+    config.active_job.queue_adapter = :sidekiq
+
     config.to_prepare do
       Devise::SessionsController.layout "auth"
       # DeviseInvitable::RegistrationsController.layout "auth"
