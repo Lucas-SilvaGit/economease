@@ -26,10 +26,10 @@
                 <%= f.select :transaction_type_eq, options_for_select(Transaction.transaction_types.map { |key, _value| [I18n.t("attributes.transaction_types.#{key}"), key] }), include_blank: "Selecione...", class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
-                <%= f.date_field :due_date_gteq, value: (params[:due_date_gteq] || Time.zone.today.beginning_of_month.strftime("%Y-%m-%d")), class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                <%= f.date_field :due_date_gteq, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
-                <%= f.date_field :due_date_lteq, value: (params[:due_date_lteq] || Time.zone.today.strftime("%Y-%m-%d")), class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                <%= f.date_field :due_date_lteq, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
                 <%= f.select :account_id_eq, options_for_select(@accounts.map { |account| [account.name, account.id] }), include_blank: "Selecione...", class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
