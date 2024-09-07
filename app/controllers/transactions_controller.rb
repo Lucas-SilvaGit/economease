@@ -5,10 +5,11 @@ class TransactionsController < ApplicationController
   before_action :set_transaction, only: %i[show edit update destroy]
 
   def index
-    @q = Transaction.ransack(params[:q])
-    @transactions = @q.result(distinct: true).for_user(current_user)
-    @accounts = current_user.accounts
-    @categories = Category.joins(:transactions).where(transactions: { account_id: current_user.accounts.ids }).distinct
+    transaction_search_service = TransactionSearchService.new(current_user, params)
+    @q = transaction_search_service.ransack_query
+    @transactions = transaction_search_service.result
+    @accounts = AccountSearchService.new(current_user).call
+    @categories = CategorySearchService.new(current_user).call
   end
 
   def show; end
