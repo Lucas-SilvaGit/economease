@@ -1,24 +1,30 @@
 en:
+  attributes:
+    description: "Description"
+    amount: "Amount"
+    transaction_type: "Transaction Type"
+    due_date: "Due Date"
+    status: "Status"
+    voucher: "Voucher"
+    account_id: "Account"
+    category_id: "Category"
+    transaction_types:
+      income: "Income"
+      expense: "Expense"
+    statuses:
+      pending: "Pending"
+      completed: "Completed"
   activerecord:
     models:
-      transaction:
-        actions:
-          create: "Create transaction"
-          edit: "Editing transaction"
-          new: "New transaction"
-          show: "View transaction"
-          destroy: "Delete transaction"
-        notice:
-          create: "Transaction created successfully"
-          edit: "Transaction updated successfully"
-          destroy: "Transaction deleted successfully"
-        errors:
-          invalid: "is invalid"
-        fields:
-          description: "Description"
-          amount: "Amount"
-          transaction_type: "Transaction Type"
-          due_date: "Due Date"
-          account: "Account"
-          category: "Category"
-          status: "Status"
+      transaction: "Transaction"
+      transactions: "Transactions"
+    attributes:
+      account: "Account"
+      category: "Category"
+      status: "Status"
+      transaction_types:
+        income: "Income"
+        expense: "Expense"
+      statuses:
+        pending: "Pending"
+        completed: "Completed"
