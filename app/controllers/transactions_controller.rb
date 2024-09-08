@@ -3,13 +3,12 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_transaction, only: %i[show edit update destroy]
+  before_action :load_accounts_and_categories, only: :index
 
   def index
     transaction_search_service = TransactionSearchService.new(current_user, params)
     @q = transaction_search_service.ransack_query
     @transactions = transaction_search_service.result
-    @accounts = AccountSearchService.new(current_user).call
-    @categories = CategorySearchService.new(current_user).call
   end
 
   def show; end
@@ -78,5 +77,10 @@ class TransactionsController < ApplicationController
 
   def valid_account?(account)
     account && account.user_id == current_user.id
+  end
+
+  def load_accounts_and_categories
+    @accounts = AccountSearchService.new(current_user).call
+    @categories = CategorySearchService.new(current_user).call
   end
 end
