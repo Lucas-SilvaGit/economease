@@ -11,8 +11,7 @@ class TransactionsController < ApplicationController
   def show; end
 
   def new
-    @transaction = Transaction.new(transaction_type: params[:transaction_type])
-    assign_account(@transaction)
+    @transaction = Transaction.new
   end
 
   def edit; end
@@ -59,18 +58,6 @@ class TransactionsController < ApplicationController
     redirect_to transactions_url, notice: t("views.transaction.notice.destroy")
   end
 
-  def assign_account(transaction)
-    return if params[:account_id].blank?
-
-    account = find_account(params[:account_id])
-
-    if account
-      transaction.account = account
-    else
-      handle_account_not_found
-    end
-  end
-
   private
 
   def set_transaction
@@ -86,15 +73,6 @@ class TransactionsController < ApplicationController
   end
 
   def valid_account?(account)
-    account && account.user_id == current_user.id
-  end
-
-  def find_account(account_id)
-    current_user.accounts.find_by(id: account_id)
-  end
-
-  def handle_account_not_found
-    flash[:alert] = t("views.transaction.errors.invalid")
-    redirect_to some_path
+    account && current_user.accounts.ids.include?(account.id)
   end
 end
