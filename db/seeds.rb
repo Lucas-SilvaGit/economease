@@ -44,7 +44,10 @@ categories = [
 ]
 
 categories.each do |name|
-  Category.find_or_create_by(name: name)
+  Category.find_or_create_by(
+    name: name,
+    user_id: User.all.first.id
+  )
 end
 
 puts "Categories created successfuly"

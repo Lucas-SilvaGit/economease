@@ -7,7 +7,7 @@ module Categories
     end
 
     def call
-      Category.joins(:transactions).where(transactions: { account_id: @user.accounts.ids }).distinct
+      Category.by_user_accounts(@user)
     end
   end
 end
