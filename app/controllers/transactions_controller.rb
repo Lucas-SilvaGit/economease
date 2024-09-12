@@ -7,7 +7,7 @@ class TransactionsController < ApplicationController
   before_action :load_categories, only: :index
 
   def index
-    transaction_search_service = TransactionSearchService.new(current_user, params)
+    transaction_search_service = Transactions::TransactionSearchService.new(current_user, params)
     @q = transaction_search_service.ransack_query
     @transactions = transaction_search_service.result
   end
@@ -28,7 +28,7 @@ class TransactionsController < ApplicationController
       return render :new, status: :unprocessable_entity
     end
 
-    processor = TransactionProcessor.new(@transaction)
+    processor = Transactions::TransactionProcessor.new(@transaction)
 
     if processor.process_transaction(:save!)
       redirect_to transactions_path, notice: t("views.transaction.notice.create")
@@ -45,7 +45,7 @@ class TransactionsController < ApplicationController
       return render :edit, status: :unprocessable_entity
     end
 
-    processor = TransactionProcessor.new(@transaction)
+    processor = Transactions::TransactionProcessor.new(@transaction)
 
     if processor.process_transaction(:save!)
       redirect_to transactions_path, notice: t("views.transaction.notice.edit")
@@ -57,7 +57,7 @@ class TransactionsController < ApplicationController
   def destroy
     ActiveRecord::Base.transaction do
       @transaction.destroy!
-      CalculatedBalance.new(@transaction.account).call
+      Accounts::CalculatedBalance.new(@transaction.account).call
     end
     redirect_to transactions_url, notice: t("views.transaction.notice.destroy")
   end
@@ -81,10 +81,10 @@ class TransactionsController < ApplicationController
   end
 
   def load_accounts
-    @accounts = AccountSearchService.new(current_user).call
+    @accounts = Accounts::AccountSearchService.new(current_user).call
   end
 
   def load_categories
-    @categories = CategorySearchService.new(current_user).call
+    @categories = Categories::CategorySearchService.new(current_user).call
   end
 end
