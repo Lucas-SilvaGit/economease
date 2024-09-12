@@ -9,7 +9,7 @@ class TransactionsController < ApplicationController
   def index
     transaction_search_service = Transactions::TransactionSearchService.new(current_user, params)
     @q = transaction_search_service.ransack_query
-    @transactions = transaction_search_service.result
+    @transactions = transaction_search_service.call
   end
 
   def show; end
