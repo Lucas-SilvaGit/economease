@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Transactions
-  class TransactionProcessor
+  class ProcessorService
     def initialize(transaction)
       @transaction = transaction
     end

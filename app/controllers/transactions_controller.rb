@@ -28,9 +28,7 @@ class TransactionsController < ApplicationController
       return render :new, status: :unprocessable_entity
     end
 
-    processor = Transactions::TransactionProcessor.new(@transaction)
-
-    if processor.process_transaction(:save!)
+    if transaction_processor.process_transaction(:save!)
       redirect_to transactions_path, notice: t("views.transaction.notice.create")
     else
       render :new, status: :unprocessable_entity
@@ -45,9 +43,7 @@ class TransactionsController < ApplicationController
       return render :edit, status: :unprocessable_entity
     end
 
-    processor = Transactions::TransactionProcessor.new(@transaction)
-
-    if processor.process_transaction(:save!)
+    if transaction_processor.process_transaction(:save!)
       redirect_to transactions_path, notice: t("views.transaction.notice.edit")
     else
       render :edit, status: :unprocessable_entity
@@ -86,5 +82,9 @@ class TransactionsController < ApplicationController
 
   def load_categories
     @categories = Categories::CategorySearchService.new(current_user).call
+  end
+
+  def transaction_processor
+    @transaction_processor ||= Transactions::ProcessorService.new(@transaction)
   end
 end
