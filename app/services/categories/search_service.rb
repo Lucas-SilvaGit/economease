@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Categories
-  class CategorySearchService
+  class SearchService
     def initialize(user)
       @user = user
     end

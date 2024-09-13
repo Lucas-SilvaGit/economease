@@ -77,11 +77,11 @@ class TransactionsController < ApplicationController
   end
 
   def load_accounts
-    @accounts = Accounts::AccountSearchService.new(current_user).call
+    @accounts = current_user.accounts
   end
 
   def load_categories
-    @categories = Categories::CategorySearchService.new(current_user).call
+    @categories = Categories::SearchService.new(current_user).call
   end
 
   def transaction_processor
