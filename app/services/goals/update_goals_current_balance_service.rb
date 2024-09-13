@@ -7,9 +7,9 @@ module Goals
     end
 
     def call
-      total_balance = @user.total_account_balance
+      current_balance = calculate_current_balance
       @user.goals.find_each do |goal|
-        goal.update(current_amount: total_balance)
+        goal.update(current_amount: current_balance)
       end
     end
 
