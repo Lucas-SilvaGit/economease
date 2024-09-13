@@ -53,7 +53,7 @@ class TransactionsController < ApplicationController
   def destroy
     ActiveRecord::Base.transaction do
       @transaction.destroy!
-      Accounts::CalculatedBalance.new(@transaction.account).call
+      Accounts::UpdateBalanceService.new(@transaction.account).call
     end
     redirect_to transactions_url, notice: t("views.transaction.notice.destroy")
   end

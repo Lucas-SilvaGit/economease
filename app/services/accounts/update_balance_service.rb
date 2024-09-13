@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Accounts
-  class CalculatedBalance
+  class UpdateBalanceService
     def initialize(account)
       @account = account
     end

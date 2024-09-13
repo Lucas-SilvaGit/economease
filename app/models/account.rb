@@ -16,7 +16,7 @@ class Account < ApplicationRecord
   end
 
   def update_balance
-    CalculatedBalance.new(self).calculate_balance
+    UpdateBalanceService.new(self).calculate_balance
   end
 
   private

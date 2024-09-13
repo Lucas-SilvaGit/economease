@@ -23,7 +23,7 @@ module Transactions
     private
 
     def update_balance
-      Accounts::CalculatedBalance.new(@transaction.account).call
+      Accounts::UpdateBalanceService.new(@transaction.account).call
     end
   end
 end
