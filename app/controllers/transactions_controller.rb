@@ -81,7 +81,7 @@ class TransactionsController < ApplicationController
   end
 
   def load_categories
-    @categories = Categories::SearchService.new(current_user).call
+    @categories = current_user.categories
   end
 
   def transaction_processor

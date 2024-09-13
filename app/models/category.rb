@@ -7,10 +7,4 @@ class Category < ApplicationRecord
   has_many :transactions, dependent: :destroy
 
   validates :name, presence: true
-
-  scope :by_user_accounts, lambda { |user|
-    joins(:transactions)
-      .where(transactions: { account_id: user.accounts.ids })
-      .distinct
-  }
 end
