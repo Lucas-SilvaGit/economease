@@ -10,6 +10,7 @@ pt-BR:
     errors:
       balance:
         insufficient: "Saldo Insuficiente"
+        update_failed: "Falha na atualização"
     notice:
       create: "Conta criada com sucesso"
       edit: "Conta atualizada com sucesso"
