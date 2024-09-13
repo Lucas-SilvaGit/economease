@@ -7,9 +7,23 @@ module Accounts
     end
 
     def call
-      return true if @transaction.transaction_type == "income"
-      return true if @transaction.transaction_type == "expense" && @transaction.status != "completed"
+      return true if income_transaction?
+      return true if expense_transaction_pending?
 
+      sufficcient_balance?
+    end
+
+    private
+
+    def income_transaction?
+      @transaction.transaction_type == "income"
+    end
+
+    def expense_transaction_pending?
+      @transaction.transaction_type == "expense" && @transaction.status != "completed"
+    end
+
+    def sufficcient_balance?
       @transaction.account.balance.to_f >= @transaction.amount.to_f
     end
   end
