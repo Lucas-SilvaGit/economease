@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Goals
-  class UpdateGoalsCurrentBalanceService
+  class UpdateCurrentBalanceService
     def initialize(user)
       @user = user
     end

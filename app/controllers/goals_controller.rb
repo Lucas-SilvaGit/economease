@@ -3,6 +3,7 @@
 class GoalsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_goal, only: %i[show edit update destroy]
+  before_action :set_current_balance, only: %i[new edit]
 
   def index
     @goals = current_user.goals
@@ -12,13 +13,9 @@ class GoalsController < ApplicationController
 
   def new
     @goal = Goal.new
-
-    @current_balance = Goals::UpdateGoalsCurrentBalanceService.new(current_user).calculate_current_balance
   end
 
-  def edit
-    @current_balance = Goals::UpdateGoalsCurrentBalanceService.new(current_user).calculate_current_balance
-  end
+  def edit; end
 
   def create
     @goal = current_user.goals.new(goal_params)
@@ -51,5 +48,9 @@ class GoalsController < ApplicationController
 
   def goal_params
     params.require(:goal).permit(:name, :target_amount, :current_amount, :target_date, :saved_value)
+  end
+
+  def set_current_balance
+    @current_balance = Goals::UpdateCurrentBalanceService.new(current_user).calculate_current_balance
   end
 end
