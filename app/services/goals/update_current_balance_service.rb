@@ -8,7 +8,7 @@ module Goals
 
     def call
       current_balance = calculate_current_balance
-      @user.goals.find_each do |goal|
+      @user.goals.each do |goal|
         goal.update(current_amount: current_balance)
       end
     end
