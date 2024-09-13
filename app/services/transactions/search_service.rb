@@ -1,18 +1,24 @@
 # frozen_string_literal: true
 
 module Transactions
-  class TransactionSearchService
+  class SearchService
     def initialize(user, params)
       @user = user
       @params = params
     end
 
     def ransack_query
-      Transaction.ransack(@params[:q])
+      ransack_scope
     end
 
     def call
-      Transaction.ransack(@params[:q]).result(distinct: true).for_user(@user)
+      ransack_scope.result(distinct: true).for_user(@user)
+    end
+
+    private
+
+    def ransack_scope
+      Transaction.ransack(@params[:q])
     end
   end
 end
