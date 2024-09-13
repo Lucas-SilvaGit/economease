@@ -11,9 +11,9 @@ module Accounts
     end
 
     def calculate_balance
-      total_income = Transactions::CalculateTotalIncome.new(@account.id).call
+      total_income = Transactions::CalculateTotalIncomeService.new(@account.id).call
 
-      total_expense = Transactions::CalculateTotalExpense.new(@account.id).call
+      total_expense = Transactions::CalculateTotalExpenseService.new(@account.id).call
 
       calculated_balance = total_income - total_expense
 

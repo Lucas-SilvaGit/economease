@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Transactions
-  class CalculateTotalIncome
+  class CalculateTotalIncomeService
     def initialize(account_id)
       @account_id = account_id
     end
