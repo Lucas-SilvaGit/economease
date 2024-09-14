@@ -17,7 +17,9 @@ class CategoriesController < ApplicationController
   def edit; end
 
   def create
-    @category = current_user.categories.new(category_params)
+    @category = Category.new(category_params)
+
+    @category.user_id = current_user.id
 
     if @category.save
       redirect_to categories_path, notice: t("views.category.notice.create")
@@ -46,6 +48,6 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:name, :user_id)
+    params.require(:category).permit(:name)
   end
 end
