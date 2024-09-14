@@ -24,7 +24,7 @@ module Accounts
     end
 
     def sufficcient_balance?
-      @transaction.account.balance.to_f >= @transaction.amount.to_f
+      @transaction.account.balance >= @transaction.amount
     end
   end
 end
