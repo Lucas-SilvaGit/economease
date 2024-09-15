@@ -1,27 +1,17 @@
 en:
-  attributes:
-    description: "Description"
-    amount: "Amount"
-    transaction_type: "Transaction Type"
-    due_date: "Due Date"
-    status: "Status"
-    voucher: "Voucher"
-    account_id: "Account"
-    category_id: "Category"
-    transaction_types:
-      income: "Income"
-      expense: "Expense"
-    statuses:
-      pending: "Pending"
-      completed: "Completed"
   activerecord:
     models:
       transaction: "Transaction"
       transactions: "Transactions"
     attributes:
-      account: "Account"
-      category: "Category"
+      description: "Description"
+      amount: "Amount"
+      transaction_type: "Transaction Type"
+      due_date: "Due Date"
       status: "Status"
+      voucher: "Voucher"
+      account_id: "Account"
+      category_id: "Category"
       transaction_types:
         income: "Income"
         expense: "Expense"

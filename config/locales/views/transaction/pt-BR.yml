@@ -1,19 +1,18 @@
 pt-BR:
-  views:
-    transaction:
-      actions:
-        create: "Criar transação"
-        edit: "Editando transação"
-        new: "Nova transação"
-        show: "Ver transação"
-        destroy: "Deletar transação"
-        details: "Detalhes da Transação"
-        filter: "Filtrar"
-        clear: "Limpar"
-        show_filters: "Exibir Filtros"
-      notice:
-        create: "Transação criada com sucesso"
-        edit: "Transação atualizada com sucesso"
-        destroy: "Transação deletada com sucesso"
-      errors:
-        invalid: "é inválida"
+  transactions:
+    actions:
+      create: "Criar transação"
+      edit: "Editando transação"
+      new: "Nova transação"
+      show: "Visualizar transação"
+      destroy: "Excluir transação"
+      details: "Detalhes da transação"
+      filter: "Filtrar"
+      clear: "Limpar"
+      show_filters: "Mostrar filtros"
+    notice:
+      create: "Transação criada com sucesso"
+      edit: "Transação atualizada com sucesso"
+      destroy: "Transação excluída com sucesso"
+    errors:
+      invalid: "é inválido"

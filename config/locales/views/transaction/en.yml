@@ -1,19 +1,18 @@
 en:
-  views:
-    transaction:
-      actions:
-        create: "Create transaction"
-        edit: "Editing transaction"
-        new: "New transaction"
-        show: "View transaction"
-        destroy: "Delete transaction"
-        details: "Transaction Details"
-        filter: "Filter"
-        clear: "Clear"
-        show_filters: "Show Filters"
-      notice:
-        create: "Transaction successfully created"
-        edit: "Transaction successfully updated"
-        destroy: "Transaction successfully deleted"
-      errors:
-        invalid: "is invalid"
+  transactions:
+    actions:
+      create: "Create transaction"
+      edit: "Editing transaction"
+      new: "New transaction"
+      show: "View transaction"
+      destroy: "Delete transaction"
+      details: "Transaction details"
+      filter: "Filter"
+      clear: "Clear"
+      show_filters: "Show filters"
+    notice:
+      create: "Transaction successfully created"
+      edit: "Transaction successfully updated"
+      destroy: "Transaction successfully deleted"
+    errors:
+      invalid: "is invalid"

@@ -1,19 +1,19 @@
 <% content_for(:page_title, I18n.t("models.transactions")) %>
 <div class="flex justify-end mb-4">
-  <%= link_to I18n.t("views.transaction.actions.new"), new_transaction_path, class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+  <%= link_to I18n.t("transactions.actions.new"), new_transaction_path, class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
 </div>
 <%= render "search_form" %>
 <div class="overflow-x-auto relative shadow-lg sm:rounded-lg">
   <table class="w-full text-sm text-left text-gray-500">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
       <tr>
-        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :description, t("attributes.description")) %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :amount, t("attributes.amount")) %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :transaction_type, t("attributes.transaction_type")) %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :due_date, t("attributes.due_date")) %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :account_id, t("attributes.account_id")) %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :category_id, t("attributes.category_id")) %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :status, t("attributes.status")) %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :description, t("activerecord.attributes.description")) %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :amount, t("activerecord.attributes.amount")) %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :transaction_type, t("activerecord.attributes.transaction_type")) %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :due_date, t("activerecord.attributes.due_date")) %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :account_id, t("activerecord.attributes.account_id")) %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :category_id, t("activerecord.attributes.category_id")) %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :status, t("activerecord.attributes.status")) %></th>
         <th scope="col" class="py-3 px-6 text-center"><%= t("helpers.table.actions") %></th>
       </tr>
     </thead>
