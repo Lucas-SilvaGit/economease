@@ -2,23 +2,13 @@
 
 module Transactions
   class SearchService
-    def initialize(user, params)
-      @user = user
+    def initialize(params:, user:)
       @params = params
-    end
-
-    def ransack_query
-      ransack_scope
+      @user = user
     end
 
     def call
-      ransack_scope.result(distinct: true).for_user(@user)
-    end
-
-    private
-
-    def ransack_scope
-      Transaction.ransack(@params[:q])
+      Transaction.ransack(@params).result(distinct: true).for_user(@user)
     end
   end
 end

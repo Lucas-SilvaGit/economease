@@ -7,9 +7,8 @@ class TransactionsController < ApplicationController
   before_action :load_categories, only: :index
 
   def index
-    transaction_search_service = Transactions::SearchService.new(current_user, params)
-    @q = transaction_search_service.ransack_query
-    @transactions = transaction_search_service.call.includes(:account, :category)
+    @q = Transaction.ransack(params[:q])
+    @transactions = Transactions::SearchService.new(params: params[:q], user: current_user).call
   end
 
   def show; end
