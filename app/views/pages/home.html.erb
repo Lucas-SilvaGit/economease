@@ -12,12 +12,12 @@
                   height: "300px" %>
         </div>
       </div>
-      <div class="w-full lg:w-1/2">
+      <div class="w-full lg:w-1/2 ml-4">
         <h2 class="text-xl font-semibold text-gray-800 mb-4">Gastos por Categoria</h2>
         <div class="bg-white shadow rounded-lg p-6">
           <%= pie_chart Transaction.joins(:account, :category)
                                   .where(accounts: { user_id: current_user.id })
-                                  .where(due_date: 1.month.ago.beginning_of_month..Time.now)
+                                  .where(due_date: Time.now.beginning_of_month..Time.now.end_of_month)
                                   .group('categories.name')
                                   .sum(:amount)
                                   .transform_values { |v| v.round(2) },
@@ -30,15 +30,15 @@
       <div class="bg-white shadow rounded-lg p-6">
         <%= column_chart [
               { name: "Receitas", data: Transaction.completed.income.for_user(current_user)
-                    .group_by_day(:due_date, range: 1.month.ago.midnight..Time.now)
+                    .group_by_month(:due_date, range: 1.year.ago.midnight..Time.now)
                     .sum(:amount)
                     .transform_values { |v| v.round(2) }
-                    .transform_keys { |date| date.strftime('%d/%m/%Y') }, color: "green" },
+                    .transform_keys { |date| date.strftime('%m/%Y') }, color: "green" },
               { name: "Despesas", data: Transaction.completed.expense.for_user(current_user)
-                    .group_by_day(:due_date, range: 1.month.ago.midnight..Time.now)
+                    .group_by_month(:due_date, range: 1.year.ago.midnight..Time.now)
                     .sum(:amount)
                     .transform_values { |v| v.round(2) }
-                    .transform_keys { |date| date.strftime('%d/%m/%Y') }, color: "red" }
+                    .transform_keys { |date| date.strftime('%m/%Y') }, color: "red" }
             ],
             height: "300px", library: { colors: ["green", "red"] } %>
       </div>
