@@ -51,16 +51,17 @@ puts "Categories created successfuly"
 
 #Creating transactions
 
-# Create a new transaction for the default account
-20.times do |i|
+# Create 150 transactions distributed between the current month and the previous month
+150.times do |i|
   Transaction.create!(
     amount: Faker::Number.decimal(l_digits: 2),
     transaction_type: ['income', 'expense'].sample,
     description: Faker::Lorem.sentence,
     account_id: Account.all.sample.id,
     category_id: Category.all.sample.id,
-    due_date: Faker::Date.forward(days: 30),
+    due_date: Faker::Date.between(from: 1.months.ago.beginning_of_month, to: Time.now),
     status: ['pending', 'completed'].sample
   )
 end
-puts "Transactions created successfuly"
+
+puts "150 Transactions created successfully"

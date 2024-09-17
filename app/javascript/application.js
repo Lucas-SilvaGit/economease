@@ -2,4 +2,5 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import $ from 'jquery';
+import "chartkick/chart.js"
 window.$ = window.jQuery = $;

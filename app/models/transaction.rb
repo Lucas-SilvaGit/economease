@@ -16,5 +16,6 @@ class Transaction < ApplicationRecord
 
   scope :income, -> { where(transaction_type: "income") }
   scope :expense, -> { where(transaction_type: "expense") }
-  scope :for_user, ->(user) { joins(:account).where(accounts: { user_id: user.id }).order(due_date: :desc) }
+  scope :for_user, ->(user) { joins(:account).where(accounts: { user_id: user.id })}
+  scope :completed, -> { where(status: "completed") }
 end
