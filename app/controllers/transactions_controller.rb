@@ -73,6 +73,6 @@ class TransactionsController < ApplicationController
   end
 
   def valid_account?(account)
-    account && account.user_id == current_user.id
+    account && current_user.accounts.ids.include?(account.id)
   end
 end
