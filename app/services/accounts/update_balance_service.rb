@@ -8,8 +8,6 @@ module Accounts
 
     def call
       calculate_balance
-    rescue StandardError => e
-      handle_error(e)
     end
 
     private
@@ -20,11 +18,6 @@ module Accounts
       calculated_balance = total_income - total_expense
 
       @account.update!(balance: calculated_balance)
-    end
-
-    def handle_error(exception)
-      Rails.logger.error("Failed to update balance: #{exception.message}")
-      I18n.t("activerecord.errors.balance.update_failed")
     end
   end
 end
