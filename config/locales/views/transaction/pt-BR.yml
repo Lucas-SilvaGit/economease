@@ -10,6 +10,7 @@ pt-BR:
       filter: "Filtrar"
       clear: "Limpar"
       show_filters: "Mostrar filtros"
+      select: "Selecione..."
     notice:
       create: "Transação criada com sucesso"
       edit: "Transação atualizada com sucesso"

@@ -10,6 +10,7 @@ en:
       filter: "Filter"
       clear: "Clear"
       show_filters: "Show filters"
+      select: "Select..."
     notice:
       create: "Transaction successfully created"
       edit: "Transaction successfully updated"

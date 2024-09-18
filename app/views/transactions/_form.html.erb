@@ -20,7 +20,7 @@
     </div>
     <div>
       <%= form.label :transaction_type, t("activerecord.attributes.transaction_type"), class: "block text-sm font-medium text-gray-700" %>
-      <%= form.select :transaction_type, Transaction.transaction_types.keys.map { |type| [t("activerecord.attributes.transaction_types.#{type}"), type] }, {include_blank: "Selecione..."}, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
+      <%= form.select :transaction_type, Transaction.transaction_types.keys.map { |type| [t("activerecord.attributes.transaction_types.#{type}"), type] }, { include_blank: t("transactions.actions.select") }, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
     </div>
     <div>
       <%= form.label :due_date, t("activerecord.attributes.due_date"), class: "block text-sm font-medium text-gray-700" %>
@@ -28,15 +28,15 @@
     </div>
     <div>
       <%= form.label :account_id, t("activerecord.attributes.account_id"), class: "block text-sm font-medium text-gray-700" %>
-      <%= form.select :account_id, current_user.accounts.map { |account| [account.name, account.id]}, { include_blank: "Selecione..." }, {class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
+      <%= form.select :account_id, current_user.accounts.map { |account| [account.name, account.id]}, { include_blank: t("transactions.actions.select") }, {class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
     </div>
     <div>
       <%= form.label :category_id, t("activerecord.attributes.category_id"), class: "block text-sm font-medium text-gray-700" %>
-      <%= form.select :category_id, current_user.categories.map { |category| [category.name, category.id]}, { include_blank: "Selecione..." }, {class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
+      <%= form.select :category_id, current_user.categories.map { |category| [category.name, category.id]}, { include_blank: t("transactions.actions.select") }, {class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
     </div>
     <div>
       <%= form.label :status, t("activerecord.attributes.status"), class: "block text-sm font-medium text-gray-700" %>
-      <%= form.select :status, Transaction.statuses.keys.map { |status| [t("activerecord.attributes.statuses.#{status}"), status] }, { include_blank: "Selecione..." }, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
+      <%= form.select :status, Transaction.statuses.keys.map { |status| [t("activerecord.attributes.statuses.#{status}"), status] }, { include_blank: t("transactions.actions.select") }, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
     </div>
     <div>
       <%= form.label :voucher, t("activerecord.attributes.voucher"), class: "block text-sm font-medium text-gray-700" %>

@@ -23,7 +23,7 @@
                 <%= f.search_field :description_cont, class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
-                <%= f.select :transaction_type_eq, options_for_select(Transaction.transaction_types.map { |key, _value| [t("activerecord.attributes.transaction_types.#{key}"), key] }), include_blank: "Selecione...", class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                <%= f.select :transaction_type_eq, options_for_select(Transaction.transaction_types.map { |key, _value| [t("activerecord.attributes.transaction_types.#{key}"), key] }), { include_blank: t("transactions.actions.select") }, class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
                 <%= f.date_field :due_date_gteq, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
@@ -32,13 +32,13 @@
                 <%= f.date_field :due_date_lteq, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
-                <%= f.select :account_id_eq, options_for_select(@accounts.map { |account| [account.name, account.id] }), include_blank: "Selecione...", class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                <%= f.select :account_id_eq, options_for_select(@accounts.map { |account| [account.name, account.id] }), { include_blank: t("transactions.actions.select") }, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
-                <%= f.select :category_id_eq, options_for_select(@categories.map { |category| [category.name, category.id] }), include_blank: "Selecione...", class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                <%= f.select :category_id_eq, options_for_select(@categories.map { |category| [category.name, category.id] }), { include_blank: t("transactions.actions.select") }, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
               <td>
-                <%= f.select :status_eq, options_for_select(Transaction.statuses.map { |key, _value| [t("activerecord.attributes.statuses.#{key}"), key] }), include_blank: "Selecione...", class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+                <%= f.select :status_eq, options_for_select(Transaction.statuses.map { |key, _value| [t("activerecord.attributes.statuses.#{key}"), key] }), { include_blank: t("transactions.actions.select") }, class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </td>
             </tr>
           </tbody>
