@@ -20,7 +20,7 @@
     </div>
     <div>
       <%= form.label :transaction_type, class: "block text-sm font-medium text-gray-700" %>
-      <%= form.select :transaction_type, Transaction.transaction_types.keys.map { |type| [I18n.t("attributes.transaction_types.#{type}"), type] }, { include_blank: t("views.transaction.actions.select"), selected: params[:transaction_type] || transaction.transaction_type }, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
+      <%= form.select :transaction_type, Transaction.transaction_types.keys.map { |type| [I18n.t("attributes.transaction_types.#{type}"), type] }, { include_blank: "Selecione...", selected: params[:transaction_type] || transaction.transaction_type }, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
     </div>
     <div>
       <%= form.label :due_date, class: "block text-sm font-medium text-gray-700" %>
@@ -28,15 +28,15 @@
     </div>
     <div>
       <%= form.label :account_id, class: "block text-sm font-medium text-gray-700" %>
-      <%= form.select :account_id, current_user.accounts.map { |account| [account.name, account.id] }, { include_blank: t("views.transaction.actions.select"), selected: params[:account_id] || transaction.account_id }, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"} %>
+      <%= form.select :account_id, current_user.accounts.map { |account| [account.name, account.id] }, { include_blank: "Selecione...", selected: params[:account_id] || transaction.account_id }, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"} %>
     </div>
     <div>
       <%= form.label :category_id, class: "block text-sm font-medium text-gray-700" %>
-      <%= form.select :category_id, Category.all.map { |category| [category.name, category.id]}, { include_blank: t("views.transaction.actions.select") }, {class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
+      <%= form.select :category_id, Category.all.map { |category| [category.name, category.id]}, { include_blank: "Selecione..." }, {class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
     </div>
     <div>
       <%= form.label :status, class: "block text-sm font-medium text-gray-700" %>
-      <%= form.select :status, Transaction.statuses.keys.map { |status| [I18n.t("attributes.statuses.#{status}"), status] }, { include_blank: t("views.transaction.actions.select") }, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
+      <%= form.select :status, Transaction.statuses.keys.map { |status| [I18n.t("attributes.statuses.#{status}"), status] }, { include_blank: "Selecione..." }, { class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" } %>
     </div>
     <div>
       <%= form.label :voucher, class: "block text-sm font-medium text-gray-700" %>
