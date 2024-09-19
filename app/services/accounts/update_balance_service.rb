@@ -13,8 +13,8 @@ module Accounts
     private
 
     def calculate_balance
-      total_income = Transactions::CalculateTotalIncomeService.new(@account.id).call
-      total_expense = Transactions::CalculateTotalExpenseService.new(@account.id).call
+      total_income = Transactions::CalculateTotalService.new(@account.id, "income").call
+      total_expense = Transactions::CalculateTotalService.new(@account.id, "expense").call
       calculated_balance = total_income - total_expense
 
       @account.update!(balance: calculated_balance)
