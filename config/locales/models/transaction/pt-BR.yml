@@ -4,17 +4,18 @@ pt-BR:
       transaction: "Transação"
       transactions: "Transações"
     attributes:
-      description: "Descrição"
-      amount: "Valor"
-      transaction_type: "Tipo de Transação"
-      due_date: "Data de Vencimento"
-      status: "Status"
-      voucher: "Comprovante"
-      account_id: "Conta"
-      category_id: "Categoria"
-      transaction_types:
-        income: "Receita"
-        expense: "Despesa"
-      statuses:
-        pending: "Pendente"
-        completed: "Concluída"
+      transaction:
+        description: "Descrição"
+        amount: "Valor"
+        transaction_type: "Tipo de Transação"
+        due_date: "Data de Vencimento"
+        status: "Status"
+        voucher: "Comprovante"
+        account_id: "Conta"
+        category_id: "Categoria"
+        transaction_types:
+          income: "Receita"
+          expense: "Despesa"
+        statuses:
+          pending: "Pendente"
+          completed: "Concluída"

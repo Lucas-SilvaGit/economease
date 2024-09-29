@@ -7,13 +7,13 @@
   <table class="w-full text-sm text-left text-gray-500">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
       <tr>
-        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :description, t("activerecord.attributes.description")) %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :amount, t("activerecord.attributes.amount")) %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :transaction_type, t("activerecord.attributes.transaction_type")) %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :due_date, t("activerecord.attributes.due_date")) %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :account_id, t("activerecord.attributes.account_id")) %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :category_id, t("activerecord.attributes.category_id")) %></th>
-        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :status, t("activerecord.attributes.status")) %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :description) %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :amount) %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :transaction_type) %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :due_date) %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :account_id) %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :category_id) %></th>
+        <th scope="col" class="py-3 px-6 text-center"><%= sort_link(@q, :status) %></th>
         <th scope="col" class="py-3 px-6 text-center"><%= t("helpers.table.actions") %></th>
       </tr>
     </thead>
@@ -22,11 +22,11 @@
         <tr class="<%= index.odd? ? 'bg-gray-50' : 'bg-white' %> hover:bg-gray-100">
           <td class="py-3 px-6 text-center align-middle"><%= transaction.description %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.amount %></td>
-          <td class="py-3 px-6 text-center align-middle"><%= t("activerecord.attributes.transaction_types.#{transaction.transaction_type}") %></td>
+          <td class="py-3 px-6 text-center align-middle"><%= t("activerecord.attributes.transaction.transaction_types.#{transaction.transaction_type}") %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.due_date.strftime('%d/%m/%Y') %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.account.name %></td>
           <td class="py-3 px-6 text-center align-middle"><%= transaction.category.name %></td>
-          <td class="py-3 px-6 text-center align-middle"><%= t("activerecord.attributes.statuses.#{transaction.status}") %></td>
+          <td class="py-3 px-6 text-center align-middle"><%= t("activerecord.attributes.transaction.statuses.#{transaction.status}") %></td>
           <td class="py-4 px-6 text-center align-middle">
             <div class="flex justify-center space-x-4">
               <%= link_to I18n.t("actions.show"), transaction_path(transaction), class: "text-green-600 hover:text-green-700" %>
