@@ -17,4 +17,12 @@ class Transaction < ApplicationRecord
   scope :income, -> { where(transaction_type: "income") }
   scope :expense, -> { where(transaction_type: "expense") }
   scope :for_user, ->(user) { joins(:account).where(accounts: { user_id: user.id }).order(due_date: :desc) }
+
+  def self.ransackable_attributes(*)
+    %w[account_id amount category_id created_at description due_date id id_value status transaction_type updated_at]
+  end
+
+  def self.ransackable_associations(*)
+    %w[account category]
+  end
 end

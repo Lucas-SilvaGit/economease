@@ -1,0 +1,53 @@
+<div class="mb-4">
+  <details class="border border-gray-300 rounded-md">
+    <summary class="cursor-pointer bg-gray-100 px-4 py-2 text-base font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+      <%= I18n.t("transactions.actions.show_filters") %>
+    </summary>
+    <div class="mt-4 px-4 py-2">
+      <%= search_form_for @q, url: transactions_path, method: :get, local: true, class: "space-y-4" do |f| %>
+        <table class="w-full">
+          <thead>
+            <tr>
+              <th class="text-left text-sm font-medium text-gray-700"><%= f.label :description %></th>
+              <th class="text-left text-sm font-medium text-gray-700"><%= f.label :transaction_type %></th>
+              <th class="text-left text-sm font-medium text-gray-700"><%= f.label :due_date_gteq, "Data Venc. Inicial" %></th>
+              <th class="text-left text-sm font-medium text-gray-700"><%= f.label :due_date_lteq, "Data Venc. Final" %></th>
+              <th class="text-left text-sm font-medium text-gray-700"><%= f.label :account_id %></th>
+              <th class="text-left text-sm font-medium text-gray-700"><%= f.label :category_id %></th>
+              <th class="text-left text-sm font-medium text-gray-700"><%= f.label :status %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <%= f.search_field :description_cont, class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </td>
+              <td>
+                <%= f.select :transaction_type_eq, options_for_select(Transaction.transaction_types.map { |key, _value| [t("activerecord.attributes.transaction.transaction_types.#{key}"), key] }), { include_blank: t("transactions.actions.select") }, class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </td>
+              <td>
+                <%= f.date_field :due_date_gteq, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </td>
+              <td>
+                <%= f.date_field :due_date_lteq, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </td>
+              <td>
+                <%= f.select :account_id, options_for_select(@accounts.map { |account| [account.name, account.id] }), { include_blank: t("transactions.actions.select") }, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </td>
+              <td>
+                <%= f.select :category_id_eq, options_for_select(@categories.map { |category| [category.name, category.id] }), { include_blank: t("transactions.actions.select") }, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </td>
+              <td>
+                <%= f.select :status_eq, options_for_select(Transaction.statuses.map { |key, _value| [t("activerecord.attributes.transaction.statuses.#{key}"), key] }), { include_blank: t("transactions.actions.select") }, class: "mt-1 block w-full sm:w-32 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="flex justify-start mt-4 space-x-4">
+          <%= f.submit t("transactions.actions.filter"), class: "inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+          <%= link_to t("transactions.actions.clear"), transactions_path, class: "inline-flex items-center justify-center rounded-md border border-gray-300 bg-gray-100 px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2" %>
+        </div>
+      <% end %>
+    </div>
+  </details>
+</div>
