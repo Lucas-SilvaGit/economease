@@ -14,7 +14,10 @@ class TransactionsController < ApplicationController
   def show; end
 
   def new
-    @transaction = Transaction.new
+    @transaction = Transaction.new(
+      account_id: params[:account_id],
+      transaction_type: params[:transaction_type]
+    )
   end
 
   def edit; end
@@ -72,7 +75,7 @@ class TransactionsController < ApplicationController
   end
 
   def valid_account?(account)
-    account && account.user_id == current_user.id
+    account && current_user.accounts.ids.include?(account.id)
   end
 
   def load_accounts

@@ -8,6 +8,8 @@ pt-BR:
         show: "Ver conta"
         destroy: "Deletar conta"
         editing: "Editar esta conta"
+        add_income: "Adicionar Receita"
+        add_expense: "Adicionar Despesa"
       notice:
         create: "Conta criada com sucesso"
         edit: "Conta atualizada com sucesso"
