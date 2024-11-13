@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[show edit update destroy]
 
   def index
-    @categories = Category.order(:name)
+    @categories = current_user.categories.order(:name)
   end
 
   def show; end
@@ -18,6 +18,8 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
+
+    @category.user_id = current_user.id
 
     if @category.save
       redirect_to categories_path, notice: t("views.category.notice.create")
