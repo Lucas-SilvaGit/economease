@@ -56,6 +56,9 @@ gem "chartkick"
 # Groupdate: Group data by time periods (day, week, month, etc.)
 gem "groupdate"
 
+# Ransack
+gem "ransack"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
