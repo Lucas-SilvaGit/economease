@@ -50,6 +50,12 @@ gem "aws-sdk-s3"
 # Dotenv for Rails. Loads environment variables from .env into ENV in Rails.
 gem "dotenv-rails"
 
+# Chartkick: Easy creation of charts in Ruby on Rails
+gem "chartkick"
+
+# Groupdate: Group data by time periods (day, week, month, etc.)
+gem "groupdate"
+
 # Ransack
 gem "ransack"
 

@@ -103,6 +103,7 @@ GEM
     bootsnap (1.18.3)
       msgpack (~> 1.2)
     builder (3.3.0)
+    chartkick (5.1.0)
     childprocess (5.0.0)
     coderay (1.1.3)
     concurrent-ruby (1.3.2)
@@ -143,6 +144,8 @@ GEM
       i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    groupdate (6.2.1)
+      activesupport (>= 5.2)
     htmlbeautifier (1.4.3)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
@@ -371,6 +374,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk-s3
   bootsnap
+  chartkick
   cssbundling-rails
   database_cleaner
   debug
@@ -378,6 +382,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  groupdate
   htmlbeautifier
   jsbundling-rails
   letter_opener_web
