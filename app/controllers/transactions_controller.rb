@@ -3,9 +3,12 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_transaction, only: %i[show edit update destroy]
+  before_action :load_accounts, only: :index
+  before_action :load_categories, only: :index
 
   def index
-    @transactions = Transaction.for_user(current_user)
+    @q = Transaction.ransack(params[:q])
+    @transactions = Transactions::SearchService.new(params: params[:q], user: current_user).call
   end
 
   def show; end
@@ -20,14 +23,12 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
 
     unless valid_account?(@transaction.account)
-      @transaction.errors.add(:account, t("views.transaction.errors.invalid"))
+      @transaction.errors.add(:account, t("transactions.errors.invalid"))
       return render :new, status: :unprocessable_entity
     end
 
-    processor = TransactionProcessor.new(@transaction)
-
-    if processor.process_transaction(:save!)
-      redirect_to transactions_path, notice: t("views.transaction.notice.create")
+    if transaction_processor.process_transaction(:save!)
+      redirect_to transactions_path, notice: t("transactions.notice.create")
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,14 +38,12 @@ class TransactionsController < ApplicationController
     @transaction.assign_attributes(transaction_params)
 
     unless valid_account?(@transaction.account)
-      @transaction.errors.add(:account, t("views.transaction.errors.invalid"))
+      @transaction.errors.add(:account, t("transactions.errors.invalid"))
       return render :edit, status: :unprocessable_entity
     end
 
-    processor = TransactionProcessor.new(@transaction)
-
-    if processor.process_transaction(:save!)
-      redirect_to transactions_path, notice: t("views.transaction.notice.edit")
+    if transaction_processor.process_transaction(:save!)
+      redirect_to transactions_path, notice: t("transactions.notice.edit")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -53,9 +52,9 @@ class TransactionsController < ApplicationController
   def destroy
     ActiveRecord::Base.transaction do
       @transaction.destroy!
-      CalculatedBalance.new(@transaction.account).call
+      Accounts::UpdateBalanceService.new(@transaction.account).call
     end
-    redirect_to transactions_url, notice: t("views.transaction.notice.destroy")
+    redirect_to transactions_url, notice: t("transactions.notice.destroy")
   end
 
   private
@@ -74,5 +73,17 @@ class TransactionsController < ApplicationController
 
   def valid_account?(account)
     account && current_user.accounts.ids.include?(account.id)
+  end
+
+  def load_accounts
+    @accounts = current_user.accounts
+  end
+
+  def load_categories
+    @categories = current_user.categories
+  end
+
+  def transaction_processor
+    @transaction_processor ||= Transactions::ProcessorService.new(@transaction)
   end
 end

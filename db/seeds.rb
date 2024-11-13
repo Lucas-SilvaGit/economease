@@ -43,8 +43,13 @@ categories = [
   'Outros'
 ]
 
-categories.each do |name|
-  Category.find_or_create_by(name: name)
+User.find_each do |user|
+  categories.each do |name|
+    Category.find_or_create_by(
+      name: name,
+      user_id: user.id
+    )
+  end
 end
 
 puts "Categories created successfuly"
